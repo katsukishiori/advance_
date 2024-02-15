@@ -1,0 +1,101 @@
+.flex {
+    display: flex;
+    justify-content: center;
+}
+
+.box {
+  margin-right: 10vh;
+  margin-left: 10vh;
+  font-size: 25px;
+  width: 50%;
+  height: 100px;
+}
+
+h1 {
+  font-size: 30px;
+}
+
+.img {
+  width: 50%;
+  height: 50px;
+}
+
+.card {
+  position: relative; /* 親要素に対して相対位置指定 */
+  width: 70vh;
+  height: 80vh;
+  padding: 20px;
+  border-radius: 5px;
+  background-color: #3B5CF6;
+  box-shadow: 3px 3px 3px #ACACAC;
+}
+
+.title{
+  font-size: 25px;
+  color: #fff;
+}
+
+
+.form__input {
+  border-radius: 5px;
+}
+
+.form__input .text{
+  width: 90%;
+  height: 25px;
+
+}
+
+.form__display {
+  margin-top: 30px;
+  width: 85%;
+  height: 150px;
+  background-color: #587DF7;
+  border-radius: 5px;
+  padding-left: 10px;
+}
+
+
+
+.form__display table {
+  margin-top: 30px;
+  margin-left: 10px; /* 左寄せにするためのマージンを0に設定 */
+  font-size: 15px;
+  color: #fff;
+  line-height: 25px;
+}
+
+
+
+
+.form__display th {
+  text-align: left;
+  padding-top: 10px;
+  padding-left: 10px;
+  width: 50%;
+}
+
+.form__display td {
+  text-align: left;
+  padding-top: 10px;
+  padding-left: 10px;
+  width: 50%;
+}
+
+
+.card__bottom {
+  position: absolute; /* 絶対位置指定 */
+  bottom: 0; /* 下端に配置 */
+  left: 0; /* 左端に配置 */
+  display: block;
+  text-align: center;
+  background-color: #1637F5;
+  width: 100%;
+  padding: 10px; /* 必要に応じて余白を追加 */
+  border-radius: 0px 0px 5px 5px;
+}
+
+.card__bottom--button {
+  font-size: 14px;
+  color: #fff;
+}
