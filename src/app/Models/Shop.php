@@ -4,8 +4,12 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+
+use Illuminate\Http\Request;
 use App\Models\Prefecture;
 use App\Models\Genre;
+
+
 
 class Shop extends Model
 {
@@ -58,10 +62,52 @@ class Shop extends Model
         }
     }
 
+    public function search(Request $request)
+    {
+
+        // フォームからキーワードを取得
+        $keyword = $request->input('keyword');
+
+        // Eloquentクエリで部分一致検索を行う（店名に対して）
+        $results = Shop::keywordSearch($keyword)->get();
+
+        // 検索結果をビューに渡す
+        return view('shop', ['results' => $results]);
+    }
+
+
     public function scopeKeywordSearch($query, $keyword)
     {
-        if (!empty($keyword)) {
-            $query->where('content', 'like', '%' . $keyword . '%');
-        }
+        return $query->where('shop_name', 'like', '%' . $keyword . '%');
+    }
+
+
+
+
+    public function user()
+    {
+        return $this->belongsTo('App\Models\User');
+    }
+
+    public function likes()
+    {
+        return $this->hasMany('App\Models\Favorite');
+    }
+
+
+
+// お気に入りのハートの色を保持
+    protected $appends = ['is_favorite'];
+
+    public function getIsFavoriteAttribute()
+    {
+        // お気に入りの状態を取得するロジックを実装
+        // 例えば、Favorites テーブルに対してのリレーションを使ったりする
+        return $this->favorites()->where('user_id', auth()->id())->exists();
+    }
+
+    public function favorites()
+    {
+        return $this->hasMany(Favorite::class);
     }
 }

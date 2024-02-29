@@ -15,6 +15,6 @@ class ThanksController extends Controller
 
     public function access(Request $request)
     {
-        return view('auth.login');
+        return redirect('/login'); //redirectでログインできるようにする
     }
 }

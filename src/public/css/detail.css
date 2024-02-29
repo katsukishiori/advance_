@@ -1,6 +1,10 @@
+body {
+  background-color: #EEEEEE;
+}
+
 .flex {
-    display: flex;
-    justify-content: center;
+  display: flex;
+  justify-content: center;
 }
 
 .box {
@@ -11,13 +15,34 @@
   height: 100px;
 }
 
+
+.shop-title {
+  display: flex;
+  align-items: center;
+}
+
+.return-btn {
+  border-radius: 5px;
+  margin-right: 10px;
+  width: 35px;
+  height: 35px;
+  background: #fff;
+  box-shadow: 3px 3px 3px #ACACAC;
+  font-size: 25px;
+  border: none;
+  cursor: pointer;
+}
+
 h1 {
   font-size: 30px;
 }
 
-.img {
-  width: 50%;
-  height: 50px;
+.box img {
+  width: 100%;
+}
+
+.box p {
+  font-size: 15px;
 }
 
 .card {
@@ -35,17 +60,20 @@ h1 {
   color: #fff;
 }
 
-
-.form__input {
+/* input要素全体 */
+.form__input input {
   border-radius: 5px;
-}
-
-.form__input .text{
-  width: 90%;
   height: 25px;
-
+  border: none;
 }
 
+/* 各input要素 */
+.form__input #time,
+.form__input #reservation_count {
+  width: 90%;
+}
+
+/* 下の枠線内の表示 */
 .form__display {
   margin-top: 30px;
   width: 85%;
@@ -55,8 +83,6 @@ h1 {
   padding-left: 10px;
 }
 
-
-
 .form__display table {
   margin-top: 30px;
   margin-left: 10px; /* 左寄せにするためのマージンを0に設定 */
@@ -64,9 +90,6 @@ h1 {
   color: #fff;
   line-height: 25px;
 }
-
-
-
 
 .form__display th {
   text-align: left;
@@ -82,7 +105,6 @@ h1 {
   width: 50%;
 }
 
-
 .card__bottom {
   position: absolute; /* 絶対位置指定 */
   bottom: 0; /* 下端に配置 */
@@ -91,11 +113,13 @@ h1 {
   text-align: center;
   background-color: #1637F5;
   width: 100%;
-  padding: 10px; /* 必要に応じて余白を追加 */
+  padding: 10px;
   border-radius: 0px 0px 5px 5px;
 }
 
 .card__bottom--button {
   font-size: 14px;
   color: #fff;
+  border: none;
+  background-color: #1637F5;
 }

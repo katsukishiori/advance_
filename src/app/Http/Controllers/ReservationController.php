@@ -4,123 +4,84 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Reservation;
-use Illuminate\Support\Facades\Auth;
 use App\Models\Shop;
 use Illuminate\Support\Carbon;
 
 
 class ReservationController extends Controller
 {
-
-
-    // public function reservationShop(Request $request, $slug)
-    // {
-    //     $form = $request->all();
-    //     Reservation::create($form);
-    //     return redirect("/detail/{$slug}");
-    // }
-
     public function index($slug)
     {
-
-        // $shops = Shop::all();
-        // return view('shop', ['shops' => $shops]);
-
         $reservations = Reservation::all();
-        return view("/detail/{$slug}", ['reservations' => $reservations]);
+        return view("/detail/{slug}", ['reservations' => $reservations]);
+    }
+
+
+    public function done()
+    {
+        return view('done');
+    }
+
+    public function store(Request $request)
+    {
+
+        // ログインユーザーの情報を取得
+        $user = auth()->user();
+
+        // ユーザーがログインしていない場合
+        if (!$user) {
+            // 未ログインの場合のリダイレクト
+            return redirect('/login')->with('error', '予約するにはログインが必要です。');
+        }
+
+        $userId = auth()->id();
+        $shopId = $request->input('shop_id');
+        $date = $request->input('date');
+        $time = $request->input('time');
+        $reservationCount = $request->input('reservation_count');
+
+        // 予約データを保存
+        Reservation::create([
+            'user_id' => $userId,
+            'shop_id' => $shopId,
+            'datetime' => "{$date} {$time}",
+            'reservation_count' => $reservationCount,
+        ]);
+
+        return redirect('/done')->with('success', '予約が完了しました。');
     }
 
 
 
-
-
-    // public function reservationShop(Request $request, $slug)
-    // {
-    //     $form = $request->all();
-
-    //     // ユーザーがログインしているか確認
-    //     if (Auth::check()) {
-    //         // ログイン中のユーザーのIDを取得
-    //         $user_id = Auth::id();
-    //         // $user_id を予約データに設定
-    //         $form['user_id'] = $user_id;
-
-
-    //         // 日付と時間を結合して datetime カラムにセット
-    //         $dateTimeString = "{$form['date']} {$form['time']}";
-
-    //         // time フィールドのフォーマットが '15:04' の場合
-    //         $form['datetime'] = Carbon::createFromFormat('Y-m-d H:i', $dateTimeString)->toDateTimeString();
-
-    //         // 不要な date と time カラムを削除
-    //         unset($form['date'], $form['time']);
-    //     } else {
-    //         // ログインしていない場合の適切な処理を行うか、エラーを返すなど
-    //         // 例: return redirect('/login')->with('error', 'ログインが必要です');
-    //     }
-
-    //     Reservation::create($form);
-    //     return redirect("/detail/{$slug}");
-    // }
-
-
-
-    // public function reservationShop(Request $request, $slug)
-    // {
-    //     // フォームから正しく日付と時間の値を取得
-    //     $date = $request->input('date');
-    //     $time = $request->input('time');
-
-    //     // 日付と時間を結合して datetime カラムにセット
-    //     $dateTimeString = "{$date} {$time}";
-
-    //     // Carbon インスタンスを作成
-    //     $dateTime = Carbon::createFromFormat('Y-m-d H:i', $dateTimeString);
-
-    //     // フォームデータの準備
-    //     $form = [
-    //         'datetime' => $dateTime->toDateTimeString(),
-    //         // 他のフォームデータ（必要に応じて）
-    //     ];
-
-    //     // 他の処理（例: バリデーションやモデルへの保存）...
-
-    //     Reservation::create($form);
-
-    //     return redirect("/detail/{$slug}");
-    // }
-
-
-
-    public function reservationShop(Request $request, $slug)
+    public function reservationShop(Request $request, $slug = null)
     {
         // フォームから正しく日付と時間の値を取得
         $date = $request->input('date');
         $time = $request->input('time');
+
+        // ログインユーザーの情報を取得
+        $user = auth()->user();
+        // ショップの情報を取得（$slug を使用して取得する前提）
+        $shop = Shop::where('slug', $slug)->first();
 
         // 'date' インデックスが存在するか確認
         if (isset($date)) {
             // 日付と時間を結合して datetime カラムにセット
             $dateTimeString = "{$date} {$time}";
 
-            // time フィールドのフォーマットが '15:08' の場合
-            $form['datetime'] = Carbon::createFromFormat(
-                'Y-m-d H:i',
-                $dateTimeString
-            )->toDateTimeString();
-
-            // 不要な date と time カラムを削除
-            unset($form['date'], $form['time']);
-
-            // 他の処理（例: バリデーションやモデルへの保存）...
+            $form = [
+                'datetime' => Carbon::createFromFormat('Y-m-d H:i', $dateTimeString)->toDateTimeString(),
+                'user_id' => $user->id, // ログインユーザーのIDを設定
+                'shop_id' => $shop->id, // ショップのIDを設定
+                'reservation_count' => $request->input('reservation_count'),
+            ];
 
             Reservation::create($form);
 
-            return redirect("/detail/{$slug}");
+            return view('detail.{$slug}', compact('form', 'shopData'));
         } else {
             // 'date' インデックスが存在しない場合のエラーハンドリング
-            // 例えば、リダイレクトやエラーメッセージを表示するなど
-            return redirect("/detail/{$slug}")->with('error', '日付が指定されていません。');
+            return redirect("detail/sennin")->with('error', '日付が指定されていません。');
         }
     }
 }

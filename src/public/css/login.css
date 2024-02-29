@@ -1,14 +1,6 @@
-.body {
+body {
   background-color: #EEEEEE;
 }
-
-
-
-
-
-
-
-
 
 .login-form__content {
   margin: 0 auto;
@@ -21,8 +13,9 @@
   width: 400px;
   border: 1px solid #e9eaea;
   border-radius: 5px;
-  margin-top: 150px;
+  margin-top: 80px;
   box-shadow: 3px 3px 3px #ACACAC;
+  background-color: #fff;
 }
 
 .login-form__card--heading {
@@ -38,8 +31,6 @@
   margin-top: 10px;
   font-size: 20px;
 }
-
-
 
 .form {
   margin: 0 auto;
@@ -80,8 +71,6 @@
   appearance: none;
 }
 
-
-
 .email {
   margin-top: 30px;
 }
@@ -96,7 +85,6 @@
 
 .form__input--text input:focus {
   outline: none;
-  /* border-bottom: 2px solid #3B5CF6; */
 }
 
 .form__button {

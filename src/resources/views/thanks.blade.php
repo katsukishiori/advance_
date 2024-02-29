@@ -24,16 +24,4 @@
         </form>
     </div>
 
-
-
-
-
-
-
-
-
-
-
-
-
-    @endsection
+@endsection

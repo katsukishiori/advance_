@@ -3,6 +3,8 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use App\Models\Prefecture;
+use App\Models\Genre;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -23,6 +25,12 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        view()->composer('shop', function ($view) {
+            $prefectures = Prefecture::all();
+            $genres = Genre::all();
+
+            $view->with('prefectures', $prefectures);
+            $view->with('genres', $genres);
+        });
     }
 }

@@ -14,12 +14,19 @@ class Reservation extends Model
         return $this->hasMany(Reservation::class);
     }
 
+    public function shop()
+    {
+        return $this->belongsTo(Shop::class, 'shop_id');
+    }
+
     protected $fillable = [
         'user_id',
         'shop_id',
         'datetime',
         'reservation_count',
     ];
+
+
 
     public function shops()
     {

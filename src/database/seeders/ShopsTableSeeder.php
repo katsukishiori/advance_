@@ -82,7 +82,7 @@ class ShopsTableSeeder extends Seeder
         DB::table('shops')->insert($shop);
 
 
-        $param = [
+        $shop = [
             'prefecture_id' => 27,
             'genre_id' => 4,
             'shop_name' => 'JJ',

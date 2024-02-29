@@ -15,36 +15,12 @@ class AuthController extends Controller
         return view('shop');
     }
 
-
-    // public function index()
-    // {
-    //     $users = User::all();
-    //     return view('auth.register', ['users' => $users]);
-    // }
-
-
-
-
-
-    // public function create()
-    // {
-    //     return view('auth.register');
-    // }
-
-    // public function create(AuthorRequest $request)
-    // {
-    //     $form = $request->all();
-    //     User::create($form);
-    //     return redirect('/');
-    // }
-
     public function login(AuthorRequest $request)
     {
-
         // バリデーションが成功した場合のみ処理を続行
         $validatedData = $request->validated();
 
-        $user = User::create([
+        $user = User::all([
             'email' => $request->input('email'),
             'password' => Hash::make($request->input('password')),
         ]);
@@ -57,68 +33,25 @@ class AuthController extends Controller
 
     public function store(AuthorRequest $request)
     {
-
         // バリデーションが成功した場合のみ処理を続行
         $validatedData = $request->validated();
 
+        // ユーザーが既に存在するか確認
+        $userExists = User::where('email', $validatedData['email'])->exists();
+
+        if ($userExists) {
+            // ユーザーが既に存在する場合はエラーを返す
+            return redirect()->back()->withErrors(['email' => 'このメールアドレスは既に登録されています。']);
+        }
+
+        // ユーザーが存在しない場合は新しいユーザーを作成
         $user = User::create([
-            'name' => $request->input('name'),
-            'email' => $request->input('email'),
-            'password' => Hash::make($request->input('password')),
+            'name' => $validatedData['name'],
+            'email' => $validatedData['email'],
+            'password' => Hash::make($validatedData['password']),
         ]);
 
-        return redirect('/thanks');
+        // 新しいユーザーが作成されたら thanks ページにリダイレクト
+        return redirect('thanks');
     }
-
-    // public function create()
-    // {
-    //     return view('auth.register');
-    // }
-
-    // public function store(Request $request)
-    // {
-    //     $user = User::create([
-    //         "name" => $request->input("name"),
-    //         "email" => $request->input("email"),
-    //         "password" => Hash::make($request->input("password")),
-    //     ]);
-    //     //$users = $request->only(['name', 'email', 'password', 'password_confirmation']);
-    //     // "password"=>Hash::make($req->input("password")),
-    //     //User::create($user);
-
-    //     return redirect('/login');
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    // public function add()
-    // {
-    //     return view('shop');
-    // }
-
-    // public function create(Request $request)
-    // {
-    //     $form = $request->all();
-    //     User::create($form);
-    //     return redirect('/');
-    // }
-
-    // public function index()
-    // {
-    //     $users = User::all();
-    //     return view('shop', ['users' => $users]);
-    // }
