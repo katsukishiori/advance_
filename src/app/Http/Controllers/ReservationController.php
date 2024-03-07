@@ -5,16 +5,24 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Reservation;
 use App\Models\Shop;
+use App\Models\Evaluation;
 use Illuminate\Support\Carbon;
+use App\Http\Requests\ReservationRequest;
 
 
 class ReservationController extends Controller
 {
-    public function index($slug)
-    {
-        $reservations = Reservation::all();
-        return view("/detail/{slug}", ['reservations' => $reservations]);
-    }
+    // public function index($slug)
+    // {
+    //     // 予約情報の取得
+    //     $reservations = Reservation::all();
+
+    //     // 評価情報の取得
+    //     $evaluations = Evaluation::all();
+
+    //     // ビューにデータを渡して表示
+    //     return view('detail', ['reservations' => $reservations, 'evaluations' => $evaluations]);
+    // }
 
 
     public function done()
@@ -22,7 +30,7 @@ class ReservationController extends Controller
         return view('done');
     }
 
-    public function store(Request $request)
+    public function store(ReservationRequest $request)
     {
 
         // ログインユーザーの情報を取得
@@ -78,10 +86,20 @@ class ReservationController extends Controller
 
             Reservation::create($form);
 
-            return view('detail.{$slug}', compact('form', 'shopData'));
+            return view("detail.{$slug}", compact('form', 'shopData'));
         } else {
             // 'date' インデックスが存在しない場合のエラーハンドリング
-            return redirect("detail/sennin")->with('error', '日付が指定されていません。');
+            return redirect("detail.{$slug}")->with('error', '日付が指定されていません。');
+
+
+            $evaluations = Evaluation::all();
+
+            //     // ビューにデータを渡して表示
+            return view('detail', ['evaluations' => $evaluations]);
         }
+
+        throw Evaluation::withMessages([
+            $this->username() => [trans('auth.failed')],
+        ])->redirectTo('/login')->with('error', '投稿するにはログインが必要です。');
     }
 }

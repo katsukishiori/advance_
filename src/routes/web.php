@@ -8,6 +8,9 @@ use App\Http\Controllers\ReservationController;
 use App\Http\Controllers\MyPageController;
 use App\Http\Controllers\FavoriteController;
 use App\Http\Controllers\MenuController;
+use App\Http\Controllers\EvaluationController;
+use App\Http\Controllers\AdminUserController;
+use App\Http\Controllers\ShopLeaderController;
 
 /*
 |--------------------------------------------------------------------------
@@ -33,7 +36,7 @@ Route::get('/search', [ShopController::class, 'search']);
 
 
 
-
+Route::get('/detail', [ReservationController::class, 'index'])->name('index');
 
 // 予約するときだけ認証が必要なルート
 Route::post('/reservation', [ReservationController::class, 'reservationShop'])->middleware('auth');
@@ -84,3 +87,18 @@ Route::patch('/mypage/{id}/update', [MyPageController::class, 'update'])->name('
 
 //予約追加
 // Route::get('/mypage', [MyPageController::class, 'add'])->name('mypage');
+
+
+
+
+Route::get('/evaluation', [EvaluationController::class, 'index']);
+
+
+
+Route::get('/evaluation', [EvaluationController::class, 'index']);
+Route::post('/evaluation', [EvaluationController::class, 'store'])->name('evaluation.store');
+
+
+Route::get('/admin', [AdminUserController::class, 'index']);
+
+Route::get('/shopleader', [ShopLeaderController::class, 'index']);

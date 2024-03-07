@@ -11,7 +11,8 @@ class Reservation extends Model
 
     public function user()
     {
-        return $this->hasMany(Reservation::class);
+        // return $this->hasMany(Reservation::class);
+        return $this->belongsTo(User::class, 'user_id');
     }
 
     public function shop()

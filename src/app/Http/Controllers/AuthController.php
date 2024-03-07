@@ -2,10 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Http\Requests\AuthorRequest;
 use App\Models\User;
-use Illuminate\Support\Facades\Hash; // Hashクラスを使用するために追加
+use Illuminate\Support\Facades\Hash;
 
 
 class AuthController extends Controller
@@ -17,18 +16,29 @@ class AuthController extends Controller
 
     public function login(AuthorRequest $request)
     {
-        // バリデーションが成功した場合のみ処理を続行
+        // バリデーション
         $validatedData = $request->validated();
 
-        $user = User::all([
-            'email' => $request->input('email'),
-            'password' => Hash::make($request->input('password')),
-        ]);
+        // メールアドレスでユーザーを取得
+        $user = User::where('email', $validatedData['email'])->first();
 
-        // ユーザーをログインさせる
-        User::login($user);
+        // ユーザーが存在し、パスワードが正しいかどうかを確認
+        if ($user && Hash::check($validatedData['password'], $user->password)) {
+            // ユーザーをログインさせる
+            User::login($user);
 
-        return redirect('/shop');
+            // セッションから元のURLを取得
+            $redirectUrl = session('redirect_url', '/');
+
+            // セッションから元のURLを削除
+            session()->forget('redirect_url');
+
+            // 元のページにリダイレクト
+            return redirect($redirectUrl)->with('success', 'ログインしました。');
+        }
+
+        // 認証に失敗した場合、エラーメッセージとともに戻る
+        return redirect('/login')->with('error', '無効なメールアドレスまたはパスワードです。');
     }
 
     public function store(AuthorRequest $request)

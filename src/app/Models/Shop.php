@@ -94,9 +94,14 @@ class Shop extends Model
         return $this->hasMany('App\Models\Favorite');
     }
 
+    public function evaluations()
+    {
+        return $this->hasMany(Evaluation::class);
+    }
 
 
-// お気に入りのハートの色を保持
+
+    // お気に入りのハートの色を保持
     protected $appends = ['is_favorite'];
 
     public function getIsFavoriteAttribute()

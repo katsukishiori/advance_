@@ -1,0 +1,110 @@
+.return-btn {
+border-radius: 5px;
+width: 40px;
+height: 40px;
+color: #fff;
+font-weight: lighter;
+background: #3B5CF6;
+margin: 30px;
+box-shadow: 3px 3px 3px #ACACAC;
+font-size: 30px;
+border: none;
+cursor: pointer;
+}
+
+
+
+.evaluation-ttl {
+    margin-left: 10vh;
+    font-size: 20px;
+}
+
+
+.nickname {
+    margin-top: 50px;
+    margin-left: 15vh;
+    display: flex;
+}
+
+input {
+    height: 30px;
+    margin-top: 20px;
+    margin-left: 50px;
+    font-size: 20px;
+}
+
+.star-rating {
+    margin-top: 50px;
+    margin-left: 15vh;
+    display: flex;
+}
+
+.rating-container {
+    display: flex;
+    margin-left: 50px;
+}
+
+#rating {
+    /* Optional: Adjust styling for stars */
+    margin-right: 10px; /* Add margin between stars and the select element */
+}
+
+#rating i {
+    cursor: pointer;
+    font-size: 24px;
+    color: #ccc;
+    margin-top: 25px;
+}
+
+#rating i.active {
+    color: #ffdd00;
+}
+
+#ratingSelect {
+    width: 30px;
+    height: 30px;
+    margin-top: 25px;
+    margin-left: 20px;
+}
+
+
+
+.comment {
+    margin-top: 50px;
+    margin-left: 15vh;
+}
+
+textarea {
+    font-size: 20px;
+}
+
+
+.form__button {
+  margin-bottom: 20px;
+}
+
+.photo-upload {
+    margin-top: 50px;
+
+}
+
+.upload-button {
+    background-color: #C0C0C0;
+    color: white;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.form__button-submit {
+  width: 20%;
+  height: 40px;
+  margin-top: 100px;
+  margin-left: 20vh;
+  border: none;
+  border-radius: 5px;
+  background: #3B5CF6;
+  color: #fff;
+  cursor: pointer;
+}

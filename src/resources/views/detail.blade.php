@@ -6,8 +6,6 @@
 @endsection
 
 @section('content')
-
-
 <div class="flex">
     <!------------- 店舗詳細 -------------->
     <div class="box">
@@ -15,7 +13,7 @@
             <div class="shop-title">
                 <input type="submit" class="return-btn" value="<" />
 
-                <h1>{{ $shopData->shop_name }}</h1>
+                <h2>{{ $shopData->shop_name }}</h2>
             </div>
             <img src="{{ asset('img/' . $shopData->shop_image) }}" alt="" />
             <p> #{{ $shopData->prefecture->prefecture_name }}
@@ -28,13 +26,14 @@
     <!------------- 予約カード -------------->
     <div class="box">
         <div class="card">
-            <h1 class="title">予約</h1>
+            <h2 class="title">予約</h2>
             <form action="{{ route('reservation.store') }}" method="post">
                 @csrf
                 <input type="hidden" name="shop_id" value="{{ $shopData->id }}">
                 <div class="form__input">
                     <label for="date"></label>
                     <input type="date" id="date" name="date" value="{{ now()->toDateString() }}" required>
+
                 </div>
                 <div class="form__input">
                     <label for="time"></label>
@@ -44,6 +43,10 @@
                     <label for="reservation_count"></label>
                     <input type="number" id="reservation_count" name="reservation_count" value="1" min="1" max="100" required>
                 </div>
+
+                @if($errors->has('date'))
+                <p style="color: red; font-size: 16px; line-height: 1;">{{ $errors->first('date') }}</p>
+                @endif
                 <div class="card__bottom">
                     <button class="card__bottom--button" type="submit">予約する</button>
                 </div>
@@ -75,22 +78,7 @@
 
 
 
-                <script>
-                    // フォームの入力が変更されたときの処理
-                    document.getElementById('date').addEventListener('change', updateDisplay);
-                    document.getElementById('time').addEventListener('change', updateDisplay);
-                    document.getElementById('reservation_count').addEventListener('change', updateDisplay);
 
-                    // 初期表示
-                    updateDisplay();
-
-                    // フォームの値を表示に反映させる関数
-                    function updateDisplay() {
-                        document.getElementById('displayDate').innerText = document.getElementById('date').value;
-                        document.getElementById('displayTime').innerText = document.getElementById('time').value;
-                        document.getElementById('displayNumber').innerText = document.getElementById('reservation_count').value + '人';
-                    }
-                </script>
 
         </div>
         <!-- .card 終了 -->
@@ -98,4 +86,61 @@
     <!-- .box 終了 -->
 </div>
 <!-- .flex 終了 -->
+
+
+<div class="evaluation-btn">
+    @if(auth()->check())
+    <a class="evaluation" href="/evaluation?shop_id={{ $shopData->id }}">タップして評価</a>
+    @else
+    <a class="evaluation" href="{{ url('/login') }}">タップして評価</a>
+    @endif
+</div>
+
+<!-- @if(isset($evaluations) && $evaluations->count() > 0)
+@foreach ($evaluations as $evaluation)
+<div class="evaluation-list">
+    <h3>みんなの口コミ</h3>
+    <div class="evaluation-nickname">
+        <h4>{{ $evaluation->nickname }}</h4>
+    </div>
+    <div class="rating-container">
+        <div id="rating">
+            @for ($i = 1; $i <= 5; $i++) <i class="fas fa-star {{ $i <= ($evaluation->rating ?? 0) ? 'active' : '' }}" data-index="{{ $i }}"></i>
+                @endfor
+        </div>
+    </div>
+    <div class="evaluation-comment">
+        {{ $evaluation->comment }}
+    </div>
+</div>
+@endforeach
+@else
+<p>まだ口コミがありません。</p>
+@endif -->
+
+
+@if(isset($evaluations) && $evaluations->count() > 0)
+@foreach ($evaluations as $evaluation)
+<div class="evaluation-list">
+    <h3>みんなの口コミ</h3>
+    <div class="evaluation-nickname">
+        <h4>{{ $evaluation->nickname }}</h4>
+    </div>
+    <div class="rating-container">
+        <div id="rating">
+            @for ($i = 1; $i <= 5; $i++) <i class="fas fa-star {{ $i <= ($evaluation->rating ?? 0) ? 'active' : '' }}" data-index="{{ $i }}"></i>
+                @endfor
+        </div>
+    </div>
+    <div class="evaluation-comment">
+        {{ $evaluation->comment }}
+    </div>
+</div>
+@endforeach
+@else
+<p>まだ口コミがありません。</p>
+@endif
+
+
+
 @endsection

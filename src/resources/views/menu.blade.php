@@ -10,10 +10,15 @@
 </head>
 
 <div class="shop-title">
-    <form action="/" method="get">
-        <input type="submit" class="return-btn" value="×" />
-    </form>
+    <button onclick="goBack()" class="return-btn">×</button>
 </div>
+
+<script>
+    function goBack() {
+        // ブラウザの履歴を1つ前に戻る
+        window.history.back();
+    }
+</script>
 
 <body>
     <!-- ログインしている時に非表示 -->

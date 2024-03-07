@@ -5,6 +5,7 @@
     <title>Rese</title>
     <link rel="stylesheet" href="{{ asset('css/shop.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha384-w22ofWoEaD0QG6Lg5uKsRYbOhAaEN3KIo6p6BkRH9KXjU2VE+D1eg/ggX1Waf3+u" crossorigin="anonymous">
 
 </head>
 
@@ -117,6 +118,47 @@
                     #{{ $shop->prefecture->prefecture_name }}
                     #{{ $shop->genre->genre_name }}
                 </p>
+
+                <!-- ５段階評価星マーク -->
+                <div id="rating">
+                    <i class="fa fa-star active"></i>
+                    <i class="fa fa-star active"></i>
+                    <i class="fa fa-star active"></i>
+                    <i class="fa fa-star active"></i>
+                    <i class="fa fa-star active"></i>
+
+
+                    <i class="fas fa-comment-dots" style="cursor: pointer;" onclick="redirectToEvaluation()"></i>
+
+                </div>
+
+                <script>
+                    function redirectToEvaluation() {
+                        // JavaScriptで評価ページにリダイレクト
+                        window.location.href = "/detail/" + slug;
+                    }
+                </script>
+
+                <script>
+                    $('.fa').on('mouseover', function() {
+                        var $this = $(this);
+                        $this.nextAll().removeClass('fa-star').addClass("fa-star-o");
+                        $this.prevAll().removeClass("fa-star-o").addClass('fa-star');
+                        $this.removeClass("fa-star-o").addClass('fa-star');
+                    });
+                    $('.fa').one('click', function() {
+                        var $this = $(this);
+                        $this.addClass('active').siblings().removeClass('active');
+                    });
+                    $('.fa').on('mouseleave', function() {
+                        var select = $('.active');
+                        select.nextAll().removeClass('fa-star').addClass('fa-star-o');
+                        select.prevAll().removeClass('fa-star-o').addClass('fa-star');
+                        select.removeClass('fa-star-o').addClass('fa-star');
+                    });
+                </script>
+
+
                 <div class="tag">
                     <a class="card__tag" href="{{ route('detail', ['slug' => $shop->slug]) }}">詳しく見る</a>
 

@@ -2,6 +2,25 @@ body {
   background-color: #EEEEEE;
 }
 
+.reservation__alert--success {
+  padding: 10px 30px;
+  border-color: #badbcc;
+  background-color: #f37782;
+  color: 	#B1063A;
+}
+
+.reservation__alert--danger {
+  padding: 10px 0;
+  border-color: #f5c2c7;
+  background-color: #f8d7da;
+  color: #842029;
+}
+
+.reservation__alert--danger ul {
+  margin: 0;
+}
+
+
 .login-form__content {
   margin: 0 auto;
   padding: 30px 15px;
