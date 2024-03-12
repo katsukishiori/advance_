@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use App\Models\Role;
 use App\Models\Favorite;
 use App\Models\Reservation;
 
@@ -16,6 +17,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'role_id',
     ];
 
     protected $hidden = [
@@ -52,13 +54,18 @@ class User extends Authenticatable
 
     public function evaluations()
     {
-        return $this->hasMany(Evaluation::class);
+        return $this->hasMany(Evaluation::class, 'user_id');
     }
 
 
     // お気に入りのハートの色を保持
     public function favoriteShops()
     {
-        return $this->belongsToMany(Shop::class, 'favorites', 'user_id', 'shop_id');
+        return $this->belongsToMany(Shop::class, 'favorites', 'user_id', 'shop_id', 'role_id');
+    }
+
+    public function role()
+    {
+        return $this->belongsTo(Role::class);
     }
 }

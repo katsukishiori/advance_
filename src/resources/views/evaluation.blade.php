@@ -101,11 +101,6 @@
                 <!-- shop_id を送るための隠しフィールド -->
                 <input type="hidden" name="shop_id" value="{{ request('shop_id') }}">
 
-                <div class="photo-upload">
-                    <input type="file" name="photo" accept="image/*" id="fileInput" style="display: none;">
-                    <label for="fileInput" class="upload-button">写真を追加</label>
-                </div>
-
                 <div class="form__button">
                     <button class="form__button-submit" type="submit">口コミを投稿する</button>
                 </div>

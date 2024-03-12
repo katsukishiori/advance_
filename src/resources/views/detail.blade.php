@@ -6,6 +6,7 @@
 @endsection
 
 @section('content')
+
 <div class="flex">
     <!------------- 店舗詳細 -------------->
     <div class="box">
@@ -87,60 +88,47 @@
 </div>
 <!-- .flex 終了 -->
 
-
 <div class="evaluation-btn">
     @if(auth()->check())
-    <a class="evaluation" href="/evaluation?shop_id={{ $shopData->id }}">タップして評価</a>
+    <a class="evaluation-btn" href="/evaluation?shop_id={{ $shopData->id }}">評価する</a>
     @else
-    <a class="evaluation" href="{{ url('/login') }}">タップして評価</a>
+    <a class="evaluation" href="{{ url('/login') }}">評価する</a>
     @endif
 </div>
 
-<!-- @if(isset($evaluations) && $evaluations->count() > 0)
-@foreach ($evaluations as $evaluation)
+
 <div class="evaluation-list">
     <h3>みんなの口コミ</h3>
-    <div class="evaluation-nickname">
-        <h4>{{ $evaluation->nickname }}</h4>
-    </div>
-    <div class="rating-container">
-        <div id="rating">
-            @for ($i = 1; $i <= 5; $i++) <i class="fas fa-star {{ $i <= ($evaluation->rating ?? 0) ? 'active' : '' }}" data-index="{{ $i }}"></i>
-                @endfor
+    @if(isset($evaluations) && $evaluations->count() > 0)
+
+    @foreach ($evaluations as $evaluation)
+    <div class="evaluation-item">
+        <div class="evaluation-nickname">
+            <h4>{{ $evaluation->nickname }}</h4>
+        </div>
+
+        <div class="rating-container">
+            <div id="rating">
+                @for ($i = 1; $i <= 5; $i++) <i class="fas fa-star {{ $i <= ($evaluation->rating ?? 0) ? 'active' : '' }}" data-index="{{ $i }}"></i>
+                    @endfor
+            </div>
+        </div>
+
+        <div class="evaluation-comment">
+            {{ $evaluation->comment }}
         </div>
     </div>
-    <div class="evaluation-comment">
-        {{ $evaluation->comment }}
+    @endforeach
+
+
+    @else
+    <div class="no-evaluation">
+        <p>まだ口コミがありません。</p>
     </div>
-</div>
-@endforeach
-@else
-<p>まだ口コミがありません。</p>
-@endif -->
-
-
-@if(isset($evaluations) && $evaluations->count() > 0)
-@foreach ($evaluations as $evaluation)
-<div class="evaluation-list">
-    <h3>みんなの口コミ</h3>
-    <div class="evaluation-nickname">
-        <h4>{{ $evaluation->nickname }}</h4>
-    </div>
-    <div class="rating-container">
-        <div id="rating">
-            @for ($i = 1; $i <= 5; $i++) <i class="fas fa-star {{ $i <= ($evaluation->rating ?? 0) ? 'active' : '' }}" data-index="{{ $i }}"></i>
-                @endfor
-        </div>
-    </div>
-    <div class="evaluation-comment">
-        {{ $evaluation->comment }}
-    </div>
-</div>
-@endforeach
-@else
-<p>まだ口コミがありません。</p>
-@endif
+    @endif
 
 
 
-@endsection
+
+
+    @endsection

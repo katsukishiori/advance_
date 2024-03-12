@@ -17,13 +17,20 @@ class RedirectIfAuthenticated
      * @param  string|null  ...$guards
      * @return \Illuminate\Http\Response|\Illuminate\Http\RedirectResponse
      */
-    public function handle(Request $request, Closure $next, ...$guards)
-    {
-        $guards = empty($guards) ? [null] : $guards;
 
-        foreach ($guards as $guard) {
-            if (Auth::guard($guard)->check()) {
-                return redirect(RouteServiceProvider::HOME);
+    public function handle($request, Closure $next, $guard = null)
+    {
+        if (Auth::guard($guard)->check()) {
+            // ログイン済みの場合のリダイレクト先をユーザーの役割に応じて設定
+            switch (Auth::user()->role) {
+                case 'admin':
+                    return redirect('/admin');
+                case 'shopleader':
+                    return redirect('/shopleader');
+                case 'user':
+                    return redirect('/');
+                default:
+                    return redirect('/');
             }
         }
 

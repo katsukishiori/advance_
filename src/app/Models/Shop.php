@@ -96,7 +96,7 @@ class Shop extends Model
 
     public function evaluations()
     {
-        return $this->hasMany(Evaluation::class);
+        return $this->hasMany(Evaluation::class, 'shop_id');
     }
 
 

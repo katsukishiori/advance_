@@ -15,10 +15,10 @@ class ReservationsTableSeeder extends Seeder
     public function run()
     {
         $param = [
-            'datetime' => \Carbon\Carbon::parse(\Faker\Factory::create()->dateTimeBetween('-1 month', '+1 month'))->toDateTimeString(),
-            'reservation_count' => \Faker\Factory::create()->numberBetween(1, 10),
-            'user_id' => '1',
-            'shop_id' => '1',
+            'name' => 'admin',
+            'role' => 'admin',
+            'created_at' => now(),
+            'updated_at' => now(),
 
         ];
 

@@ -1,8 +1,6 @@
 body {
   background-color: #f5f5f5;
-  height: 1000px;
 }
-
 
 .flex {
   display: flex;
@@ -16,9 +14,8 @@ body {
   margin-bottom: 100px;
   font-size: 25px;
   width: 50%;
-  height: 600px;
+  height: 450px;
 }
-
 
 .shop-title {
   display: flex;
@@ -52,7 +49,7 @@ h2 {
 .card {
   position: relative; /* 親要素に対して相対位置指定 */
   width: 70vh;
-  height: 80vh;
+  height: 70vh;
   padding: 20px;
   border-radius: 5px;
   background-color: #3B5CF6;
@@ -128,18 +125,22 @@ h2 {
   background-color: #1637F5;
 }
 
-
-.evaluation {
-  font-size: 25px;
-  margin-left: 10vh;
+.evaluation-btn {
+  font-size: 20px;
+  text-align: center;
 }
 
 h3 {
   font-size: 25px;
   margin-top: 50px;
   margin-left: 10vh;
+  text-decoration: underline dotted 4px orange;
 }
 
+.evaluation-item {
+  height: 150px;
+  border-bottom: 1px solid #ccc;
+}
 
 h4 {
   margin-top: 50px;
@@ -150,6 +151,7 @@ h4 {
 
 .rating-container {
   margin-left: 15vh;
+  margin-bottom: 30px;
 }
 
 #rating i {
@@ -166,6 +168,11 @@ h4 {
 
 .evaluation-comment {
   font-size: 20px;
-  margin-top: 10px;
   margin-left: 15vh;
+  margin-bottom: 100px;
+}
+
+.no-evaluation {
+  margin-left: 10vh;
+  font-size: 20px;
 }

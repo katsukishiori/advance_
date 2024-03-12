@@ -62,6 +62,30 @@
             @csrf
             <a href="/mypage" class="button">Mypage</a><br />
         </form>
+
+        @can('admin')
+        <form class="form" action="" method="post">
+            @csrf
+            <a href="/admin" class="button">confirm Reservation</a><br />
+        </form>
+
+        <form class="form" action="" method="post">
+            @csrf
+            <a href="#" class="button">create shop leaders</a><br />
+        </form>
+
+        @elsecan('shopleader')
+        <form class="form" action="" method="post">
+            @csrf
+            <a href="#" class="button">confirm Reservation</a><br />
+        </form>
+
+        <form class="form" action="" method="post">
+            @csrf
+            <a href="#" class="button">modify details</a><br />
+        </form>
+
+        @endcan
         @endif
     </div>
 

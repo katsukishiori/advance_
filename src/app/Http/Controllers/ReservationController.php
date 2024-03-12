@@ -12,17 +12,18 @@ use App\Http\Requests\ReservationRequest;
 
 class ReservationController extends Controller
 {
-    // public function index($slug)
-    // {
-    //     // 予約情報の取得
-    //     $reservations = Reservation::all();
+    public function index($slug)
+    {
+        $shopData = Shop::where('slug', $slug)->first();
 
-    //     // 評価情報の取得
-    //     $evaluations = Evaluation::all();
+        $evaluations = Evaluation::all();
 
-    //     // ビューにデータを渡して表示
-    //     return view('detail', ['reservations' => $reservations, 'evaluations' => $evaluations]);
-    // }
+
+        // 関連する shop_id で絞り込んだ口コミデータを取得
+        $evaluations = Evaluation::where('shop_id', $shopData->id)->get();
+
+        return view('detail', compact('shopData', 'evaluations'));;
+    }
 
 
     public function done()
@@ -32,7 +33,6 @@ class ReservationController extends Controller
 
     public function store(ReservationRequest $request)
     {
-
         // ログインユーザーの情報を取得
         $user = auth()->user();
 
@@ -56,7 +56,7 @@ class ReservationController extends Controller
             'reservation_count' => $reservationCount,
         ]);
 
-        return redirect('/done')->with('success', '予約が完了しました。');
+        return redirect('/done');
     }
 
 
@@ -72,6 +72,9 @@ class ReservationController extends Controller
         // ショップの情報を取得（$slug を使用して取得する前提）
         $shop = Shop::where('slug', $slug)->first();
 
+        // 評価情報の初期化
+        $evaluations = [];
+
         // 'date' インデックスが存在するか確認
         if (isset($date)) {
             // 日付と時間を結合して datetime カラムにセット
@@ -79,27 +82,18 @@ class ReservationController extends Controller
 
             $form = [
                 'datetime' => Carbon::createFromFormat('Y-m-d H:i', $dateTimeString)->toDateTimeString(),
-                'user_id' => $user->id, // ログインユーザーのIDを設定
-                'shop_id' => $shop->id, // ショップのIDを設定
+                'user_id' => $user->id,
+                'shop_id' => $shop->id,
                 'reservation_count' => $request->input('reservation_count'),
             ];
 
             Reservation::create($form);
 
-            return view("detail.{$slug}", compact('form', 'shopData'));
-        } else {
-            // 'date' インデックスが存在しない場合のエラーハンドリング
-            return redirect("detail.{$slug}")->with('error', '日付が指定されていません。');
-
-
-            $evaluations = Evaluation::all();
-
-            //     // ビューにデータを渡して表示
-            return view('detail', ['evaluations' => $evaluations]);
+            // 評価情報の取得
+            $evaluations = Evaluation::select('nickname', 'comment', 'rating')->get();
         }
 
-        throw Evaluation::withMessages([
-            $this->username() => [trans('auth.failed')],
-        ])->redirectTo('/login')->with('error', '投稿するにはログインが必要です。');
+        // Blade テンプレートにデータを渡す
+        return view('detail', compact('evaluations'));
     }
 }

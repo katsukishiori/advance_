@@ -9,17 +9,9 @@ class Evaluation extends Model
 {
     use HasFactory;
 
-    // protected $table = 'evaluations';
-    // protected $fillable = ['user_id', 'shop_id', 'nickname', 'rating', 'comment', 'photo_path'];
+    protected $table = 'evaluations';
 
-    public function showEvaluations()
-    {
-        // evaluations テーブルから nickname, comment, rating のデータを取得
-        $evaluations = Evaluation::select('nickname', 'comment', 'rating')->get();
-
-        // ビューにデータを渡す
-        return view('evaluations.show', ['evaluations' => $evaluations]);
-    }
+    protected $fillable = ['user_id', 'shop_id', 'nickname', 'rating', 'comment'];
 
     // ユーザーとのリレーション
     public function user()

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Shop;
 use App\Models\Prefecture;
 use App\Models\Genre;
+use App\Models\Evaluation;
 
 
 class ShopController extends Controller
@@ -69,5 +70,16 @@ class ShopController extends Controller
         $genres = Genre::all();
 
         return view('shop', compact('shops', 'prefectures', 'genres'));
+    }
+
+    public function showShopDetails($shopId)
+    {
+        // お店の口コミを取得
+        $evaluations = Evaluation::where('shop_id', $shopId)->get();
+
+        // 平均評価を計算
+        $averageRating = $evaluations->avg('rating');
+
+        return view('shop', ['evaluations' => $evaluations, 'averageRating' => $averageRating]);
     }
 }

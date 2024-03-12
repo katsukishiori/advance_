@@ -3,6 +3,9 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+
+use Illuminate\Foundation\Support\Providers\AuthServiceProvider as AuthServiceProviderBase;
+use Illuminate\Support\Facades\Gate;
 use App\Models\Prefecture;
 use App\Models\Genre;
 
@@ -13,16 +16,14 @@ class AppServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    public function register()
-    {
-        //
-    }
 
     /**
      * Bootstrap any application services.
      *
      * @return void
      */
+
+
     public function boot()
     {
         view()->composer('shop', function ($view) {
@@ -31,6 +32,17 @@ class AppServiceProvider extends ServiceProvider
 
             $view->with('prefectures', $prefectures);
             $view->with('genres', $genres);
+        });
+
+
+
+        // ここでGateを定義する
+        Gate::define('admin', function ($user) {
+            return $user->role_id == 10;
+        });
+
+        Gate::define('shopleader', function ($user) {
+            return $user->role_id == 20;
         });
     }
 }
