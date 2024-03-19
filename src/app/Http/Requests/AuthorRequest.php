@@ -25,8 +25,9 @@ class AuthorRequest extends FormRequest
     {
         return [
             'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255',],
             'password' => ['required', 'min:8'],
+            'password_confirmation' => ['required', 'confirmed', 'min:8'],
         ];
     }
 
@@ -41,6 +42,8 @@ class AuthorRequest extends FormRequest
             'email.email' => '有効なメールアドレス形式を入力してください',
             'email.max' => 'メールアドレスを255文字以下で入力してください',
             'password.required' => 'パスワードを入力してください',
+            'password_confirmation.confirmed' => 'パスワードと確認用パスワードが一致しません',
+            'password_confirmation.required' => '確認用パスワードを入力してください',
             'password.min' => 'パスワードを8文字以上で入力してください',
         ];
     }

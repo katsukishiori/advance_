@@ -9,11 +9,7 @@
 @section('content')
 
 @if(session('error'))
-<div class="reservation__alert">
-    <div class="reservation__alert--success">
-        予約するにはログインが必要です。
-    </div>
-</div>
+
 @endif
 
 
@@ -53,6 +49,11 @@
                             @error('password')
                             {{ $message }}
                             @enderror
+                            @if (session('error'))
+                            <div class="alert alert-danger">
+                                {{ session('error') }}
+                            </div>
+                            @endif
                         </div>
                     </div>
                 </div>

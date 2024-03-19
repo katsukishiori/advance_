@@ -19,8 +19,8 @@ class CreateShopsTable extends Migration
             $table->foreignId('genre_id')->constrained();
             $table->string('shop_name', 255);
             $table->string('shop_overview', 255);
-            $table->string('shop_image', 255);
-            $table->string('slug', 255);
+            $table->string('shop_image', 255)->default('default_image.png');
+            $table->string('slug', 255)->nullable();
             $table->timestamps();
         });
     }

@@ -14,13 +14,7 @@ class ReservationsTableSeeder extends Seeder
      */
     public function run()
     {
-        $param = [
-            'name' => 'admin',
-            'role' => 'admin',
-            'created_at' => now(),
-            'updated_at' => now(),
-
-        ];
+        $param = [];
 
         DB::table('reservations')->insert($param);
     }

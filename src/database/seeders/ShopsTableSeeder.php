@@ -25,8 +25,6 @@ class ShopsTableSeeder extends Seeder
         ];
         DB::table('shops')->insert($shop);
 
-        // return view('shop')->with('shop', $shop);
-
         $shop = [
             'prefecture_id' => 27,
             'genre_id' => 2,

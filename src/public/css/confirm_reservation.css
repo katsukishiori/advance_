@@ -1,0 +1,75 @@
+body {
+  text-align: center;
+}
+
+a {
+  text-decoration: none;
+color: inherit;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 70px;
+  padding: 0 30px;
+  background-color: #fff;
+  color: #000;
+}
+
+.header-ttl {
+  font-size: 30px;
+  width: 30%;
+}
+
+h2 {
+  text-align: left;
+  padding-left: 10px;
+}
+
+.reservation-list {
+  padding-left: 10vh;
+}
+
+.flex {
+  display: flex;
+  justify-content: flex-start;
+  padding-left: 10vh;
+}
+
+/* .reservation-list {
+  padding-right: 50px;
+} */
+
+table {
+  width: 80%;
+  text-align: center;
+  border-collapse: collapse;
+  border-spacing: 0;
+  border: solid 1px #778ca3;
+  margin-top: 10px;
+  padding-left: 10vh;
+}
+
+th {
+  padding: 10px;
+  background: #FAEBD7;
+  border: solid 1px #778ca3;
+  color: #000000;
+}
+
+td {
+  padding: 10px;
+  border: solid 1px #778ca3;
+  background: #fff;
+  color: #000000;
+}
+
+
+
+
+
+
+
+
+

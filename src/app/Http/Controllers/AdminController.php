@@ -2,20 +2,22 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Gate;
+use App\Models\Shop;
 
 
 class AdminController extends Controller
 {
+
+
     public function index()
     {
-        $user = auth()->user();
+        $shops = Shop::all();
 
-        if (Gate::allows('admin', $user)) {
-            return view('admin');
-        } else {
-            return redirect('/')->with('error', '権限がありません。');
-        }
+        return view('create_shopleaders', ['shops' => $shops]);
+    }
+
+    public function dashboard()
+    {
+        return view('create_shopleaders.dashboard');
     }
 }

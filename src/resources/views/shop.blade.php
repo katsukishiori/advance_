@@ -110,7 +110,8 @@
         @foreach ($shops as $shop)
         <div class="shop__card">
             <div class="card__img">
-                <img src="{{ asset('img/' . $shop->shop_image) }}" alt="" />
+                <!-- <img src="{{ asset('img/' . $shop->shop_image) }}" alt="" /> -->
+                <img src="{{ asset('storage/images/' . $shop->shop_image) }}" alt="店舗画像">
             </div>
             <div class="card__content">
                 <div class="card__cat">{{ $shop->shop_name }}</div>
@@ -126,10 +127,7 @@
                     <i class="fa fa-star active"></i>
                     <i class="fa fa-star active"></i>
                     <i class="fa fa-star active"></i>
-
-
                     <i class="fas fa-comment-dots" style="cursor: pointer;" onclick="redirectToEvaluation()"></i>
-
                 </div>
 
                 <script>
@@ -160,7 +158,7 @@
 
 
                 <div class="tag">
-                    <a class="card__tag" href="{{ route('detail', ['slug' => $shop->slug]) }}">詳しく見る</a>
+                    <a class="card__tag" href="{{ route('index', ['shop_id' => $shop->id]) }}">詳しく見る</a>
 
                     <!-- お気に入りボタン -->
                     <a href="{{ route('mypage', $shop->id) }}" class="btn btn-primary" onclick="toggleFavorite(event, '{{ $shop->id }}')">

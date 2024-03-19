@@ -8,12 +8,35 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 use App\Models\Prefecture;
 use App\Models\Genre;
+use Illuminate\Support\Str;
 
 
 
 class Shop extends Model
 {
-    protected $fillable = ['prefecture_id', 'genre_id', 'shop_name', 'shop_overview', 'shop_image']; // 外部から設定可能なフィールド
+    protected $fillable = ['prefecture_id', 'genre_id', 'shop_name', 'shop_overview', 'shop_image', 'slug'];
+
+
+
+    // ミューテータを定義して自動的にslugを生成
+    public function setSlugAttribute($value)
+    {
+        $this->attributes['slug'] = Str::slug($value);
+    }
+
+    // Eloquentのcreatingイベントを使用してslugを自動生成
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::creating(function ($shop) {
+            $shop->slug = Str::slug($shop->shop_name);
+        });
+    }
+
+
+
+
 
     // Prefectureモデルとのリレーション
     public function prefecture()
@@ -114,5 +137,10 @@ class Shop extends Model
     public function favorites()
     {
         return $this->hasMany(Favorite::class);
+    }
+
+    public function shopleader()
+    {
+        return $this->hasMany(Shopleader::class);
     }
 }

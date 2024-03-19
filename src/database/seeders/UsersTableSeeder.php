@@ -14,21 +14,12 @@ class UsersTableSeeder extends Seeder
      */
     public function run()
     {
-        // 利用者のデータ挿入
-        $paramUser = [
-            'name' => '太郎',
-            'email' => 'tarou@email.com',
-            'password' => bcrypt('11111111'),
-            'role_id' => 1, // 利用者のロール ID
-        ];
-        DB::table('users')->insert($paramUser);
-
-        // 管理者のデータ挿入
+       // 管理者のデータ挿入
         $paramAdmin = [
             'name' => '管理者',
             'email' => 'admin@email.com',
             'password' => bcrypt('11111111'),
-            'role_id' => 10, // 管理者のロール ID
+            'role_id' => 1, // 管理者のロール ID
         ];
         DB::table('users')->insert($paramAdmin);
 
@@ -37,8 +28,17 @@ class UsersTableSeeder extends Seeder
             'name' => '店舗代表者',
             'email' => 'shopleader@email.com',
             'password' => bcrypt('11111111'),
-            'role_id' => 20, // 店舗代表者のロール ID
+            'role_id' => 2, // 店舗代表者のロール ID
         ];
         DB::table('users')->insert($paramShopLeader);
+
+        // 利用者のデータ挿入
+        $paramUser = [
+            'name' => '太郎',
+            'email' => 'tarou@email.com',
+            'password' => bcrypt('11111111'),
+            'role_id' => 3, // 利用者のロール ID
+        ];
+        DB::table('users')->insert($paramUser);
     }
 }

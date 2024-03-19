@@ -17,10 +17,10 @@
             </div>
 
             <div class="form__button">
-                <button class="form__button-submit" type="submit">戻る</button>
+                <button class="form__button-submit" type="button" onclick="history.back()">戻る</button>
             </div>
-            <div>
         </form>
     </div>
+</div>
 
-    @endsection
+@endsection

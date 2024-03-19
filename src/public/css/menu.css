@@ -25,6 +25,7 @@ cursor: pointer;
     color: #3B5CF6;
     background-color:#fff;
     font-size: 30px;
+    font-weight: lighter;
 }
 
 .button {
@@ -34,5 +35,4 @@ cursor: pointer;
     text-decoration: none;
     color: #3B5CF6;
     font-size: 30px;
-    font-weight: 500;
 }

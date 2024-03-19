@@ -11,6 +11,9 @@ use App\Http\Controllers\MenuController;
 use App\Http\Controllers\EvaluationController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ShopLeaderController;
+use App\Http\Controllers\ModifyDetailsController;
+use App\Http\Middleware\CheckRoleMiddleware;
+use App\Http\Middleware\ShopLeaderMiddleware;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,16 +26,39 @@ use App\Http\Controllers\ShopLeaderController;
 |
 */
 
-Route::middleware(['auth', 'can:admin'])->group(function () {
-    Route::get('/admin', [AdminController::class, 'index']);
+Route::post('/login', [AuthController::class, 'login'])->name('login');
+Route::get('/create_shopleaders/dashboard', [AdminController::class, 'dashboard'])->name('create_shopleaders.dashboard');
+Route::get('/confirm/reservation/dashboard', [ShopLeaderController::class, 'dashboard'])->name('confirm_reservation.dashboard');
+Route::get('/user/dashboard', [AuthController::class, 'dashboard'])->name('user.dashboard');
+
+
+
+
+// Route::middleware([AdminMiddleware::class])->group(
+//     function () {
+//         Route::get('/create_shopleaders', [AdminController::class, 'index'])->name('create_shopleaders.dashboard');
+//         Route::get('/confirm_reservation', [ShopLeaderController::class, 'index'])->name('confirm_reservation.dashboard');
+//     }
+// );
+
+// Route::middleware([ShopLeaderMiddleware::class])->group(
+//     function () {
+//         Route::get('/confirm_reservation', [ShopLeaderController::class, 'index'])->name('confirm_reservation.dashboard');
+//     }
+// );
+
+// role_id が 1 のユーザーがアクセスできるルート
+Route::middleware(['admin'])->group(function () {
+    Route::get('/confirm_reservation', [ShopLeaderController::class, 'confirmReservation'])->name('confirm_reservation');
+    Route::get('/modify_details', [ModifyDetailsController::class, 'index'])->name('modify_details');
+    Route::get('/create_shopleaders', [AdminController::class, 'index'])->name('create_shopleaders');
 });
 
-Route::middleware(['auth', 'can:shopleader'])->group(function () {
-    Route::get('/shopleader', [ShopLeaderController::class, 'index']);
+// role_id が 2 のユーザーがアクセスできるルート
+Route::middleware(['shopleader'])->group(function () {
+    Route::get('/confirm_reservation', [ShopLeaderController::class, 'index'])->name('confirm_reservation');
+    Route::get('/modify_details', [ModifyDetailsController::class, 'index'])->name('modify_details');
 });
-
-
-
 
 
 
@@ -45,7 +71,7 @@ Route::get('/detail/{slug}', [ShopController::class, 'show'])->name('detail');
 Route::get('/search', [ShopController::class, 'search']);
 Route::get('/shop/{shopId}', [ShopController::class, 'showShopDetails']);
 
-Route::get('/detail/{slug}', [ReservationController::class, 'index'])->name('index');
+Route::get('/detail/{shop_id}', [ReservationController::class, 'index'])->name('index');
 // 予約するときだけ認証が必要なルート
 Route::post('/reservation', [ReservationController::class, 'reservationShop'])->middleware('auth');
 // 予約処理
@@ -74,6 +100,12 @@ Route::patch('/mypage/{id}/update', [MyPageController::class, 'update'])->name('
 //予約追加
 // Route::get('/mypage', [MyPageController::class, 'add'])->name('mypage');
 
-
+//口コミ画面表示
 Route::get('/evaluation', [EvaluationController::class, 'index']);
+//口コミ情報処理
 Route::post('/evaluation', [EvaluationController::class, 'store'])->name('evaluation.store');
+
+//店舗代表者作成
+Route::post('/create_shopleaders', [ShopLeaderController::class, 'create']);
+//店舗情報追加
+Route::post('/modify_details', [ModifyDetailsController::class, 'create']);

@@ -17,7 +17,7 @@ class CreateEvaluationsTable extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained();
             $table->foreignId('shop_id')->constrained();
-            $table->string('nickname')->nullable();
+            $table->string('nickname');
             $table->string('comment', 255);
             $table->integer('rating');
             $table->timestamps();

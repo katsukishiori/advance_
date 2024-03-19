@@ -63,30 +63,26 @@
             <a href="/mypage" class="button">Mypage</a><br />
         </form>
 
-        @can('admin')
-        <form class="form" action="" method="post">
+        @if(Auth::user()->role_id == 1 || Auth::user()->role_id == 2)
+        <form class="form" action="/create_shopleaders" method="post">
             @csrf
-            <a href="/admin" class="button">confirm Reservation</a><br />
+            <a href="/confirm_reservation" class="button">Confirm Reservation</a><br />
         </form>
 
-        <form class="form" action="" method="post">
-            @csrf
-            <a href="#" class="button">create shop leaders</a><br />
-        </form>
 
-        @elsecan('shopleader')
-        <form class="form" action="" method="post">
-            @csrf
-            <a href="#" class="button">confirm Reservation</a><br />
-        </form>
 
-        <form class="form" action="" method="post">
+        <form class="form" action="/modify_detail" method="post">
             @csrf
-            <a href="#" class="button">modify details</a><br />
+            <a href="/modify_details" class="button">Modify Details</a><br />
         </form>
-
-        @endcan
         @endif
+        @if(Auth::user()->role_id == 1)
+        <form class="form" action="/confirm_reservation" method="post">
+            @csrf
+            <a href="/create_shopleaders" class="button">Create Shop Leaders</a><br />
+        </form>
+        @endif
+        @endauth
     </div>
 
 </body>

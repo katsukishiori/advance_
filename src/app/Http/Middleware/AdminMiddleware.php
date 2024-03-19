@@ -16,20 +16,29 @@ class AdminMiddleware
      * @return \Illuminate\Http\Response|\Illuminate\Http\RedirectResponse
      */
 
+    // public function handle(Request $request, Closure $next)
+    // {
+
+    //     // ユーザーがログインしていない場合はログインページにリダイレクト
+    //     if (!auth()->check()) {
+    //         return redirect()->route('login');
+    //     }
+
+    //     // ロールが10（管理者）であるか確認
+    //     if (auth()->user()->role_id == 1) {
+    //         return $next($request);
+    //     }
+
+    //     // ロールが10でない場合はリダイレクトなどの処理
+    //     return redirect('/')->with('error', '権限がありません');
+    // }
+
     public function handle(Request $request, Closure $next)
     {
-
-        // ユーザーがログインしていない場合はログインページにリダイレクト
-        if (!auth()->check()) {
-            return redirect()->route('login');
+        if (!$request->user() || $request->user()->role_id !== 1) {
+            return redirect('/');
         }
 
-        // ロールが10（管理者）であるか確認
-        if (auth()->user()->role_id == 10) {
-            return $next($request);
-        }
-
-        // ロールが10でない場合はリダイレクトなどの処理
-        return redirect('/')->with('error', '権限がありません。');
+        return $next($request);
     }
 }

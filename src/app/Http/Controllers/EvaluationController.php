@@ -47,7 +47,7 @@ class EvaluationController extends Controller
 
             // ファイルアップロードがあれば、適切な処理を追加
             if ($request->hasFile('photo')) {
-                $path = $request->file('photo')->store('photos'); // 適切なディレクトリに保存
+                $path = $request->file('photo')->store('photos');
                 $evaluation->photo_path = $path;
             }
 

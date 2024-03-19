@@ -8,15 +8,17 @@ use App\Models\Role;
 use App\Models\Favorite;
 use App\Models\Reservation;
 
+
 class User extends Authenticatable
 {
-    // use HasApiTokens, HasFactory, Notifiable;
     use HasFactory;
 
     protected $fillable = [
         'name',
         'email',
         'password',
+        'password_confirmation',
+        'shop_name',
         'role_id',
     ];
 
@@ -29,8 +31,10 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-
-
+    // role_id のデフォルト値を設定
+    protected $attributes = [
+        'role_id' => 3,
+    ];
 
     public function shops()
     {
@@ -57,15 +61,24 @@ class User extends Authenticatable
         return $this->hasMany(Evaluation::class, 'user_id');
     }
 
-
     // お気に入りのハートの色を保持
     public function favoriteShops()
     {
         return $this->belongsToMany(Shop::class, 'favorites', 'user_id', 'shop_id', 'role_id');
     }
 
-    public function role()
+    public function roles()
     {
-        return $this->belongsTo(Role::class);
+        return $this->belongsToMany(Role::class);
+    }
+
+    public function isAdmin()
+    {
+        return $this->role_id === 1;
+    }
+
+    public function isShopLeader()
+    {
+        return $this->role_id === 2;
     }
 }

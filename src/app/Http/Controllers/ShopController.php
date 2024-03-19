@@ -22,10 +22,12 @@ class ShopController extends Controller
     }
 
     //それぞれの店舗情報を表示する
-    public function show($slug)
+    public function show($shop_id)
     {
-        $shopData = Shop::where('slug', $slug)->firstOrFail();
-        return view('detail', compact('shopData'));
+        $shopData = Shop::findOrFail($shop_id);
+        return view('detail',
+            compact('shopData')
+        );
     }
 
     //検索機能

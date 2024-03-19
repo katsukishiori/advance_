@@ -19,21 +19,14 @@ class CheckRole
      */
     public function handle($request, Closure $next, $role)
     {
-        // ユーザーが認証されているか確認
-        if (!auth()->check()) {
-            return redirect('/login');
-        }
+        $userRole = $request->user()->role_id;
 
-        // ユーザーのロール
-        $userRole = auth()->user()->role_id;
-
-        // ロールの確認ロジック
-        if ($userRole == $role) {
+        // role_idが1または2の場合、アクセスを許可
+        if ($userRole == $role || $userRole == 1 || $userRole == 2) {
             return $next($request);
-        } else {
-            // 一致しないロールの場合はログインページにリダイレクト
-            return redirect('/login');
         }
+
+        // 上記条件に当てはまらない場合、403エラーを返す
+        abort(403, 'Unauthorized');
     }
 }
-

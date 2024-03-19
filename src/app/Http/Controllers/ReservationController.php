@@ -39,7 +39,7 @@ class ReservationController extends Controller
         // ユーザーがログインしていない場合
         if (!$user) {
             // 未ログインの場合のリダイレクト
-            return redirect('/login')->with('error', '予約するにはログインが必要です。');
+            return redirect('/login');
         }
 
         $userId = auth()->id();

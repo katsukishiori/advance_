@@ -3,8 +3,6 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
-
-use Illuminate\Foundation\Support\Providers\AuthServiceProvider as AuthServiceProviderBase;
 use Illuminate\Support\Facades\Gate;
 use App\Models\Prefecture;
 use App\Models\Genre;
@@ -36,13 +34,13 @@ class AppServiceProvider extends ServiceProvider
 
 
 
-        // ここでGateを定義する
-        Gate::define('admin', function ($user) {
-            return $user->role_id == 10;
-        });
+        // // ここでGateを定義する
+        // Gate::define('admin', function ($user) {
+        //     return $user->role_id == 10;
+        // });
 
-        Gate::define('shopleader', function ($user) {
-            return $user->role_id == 20;
-        });
+        // Gate::define('shopleader', function ($user) {
+        //     return $user->role_id == 20;
+        // });
     }
 }

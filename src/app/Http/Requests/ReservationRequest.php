@@ -26,14 +26,15 @@ class ReservationRequest extends FormRequest
         return [
             'date' => ['required', 'after:today'],
             'time' => ['required'],
-            'reservation_count' => ['required'],
         ];
     }
 
     public function messages()
     {
         return [
+            'date' => '日付は必ず選択してください。',
             'date.after' => '現在の日時よりも後の日時を選択してください。',
+            'time' => '時間は必ず選択してください。',
         ];
     }
 }
