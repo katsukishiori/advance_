@@ -1,0 +1,222 @@
+body {
+  background-color: #EEEEEE;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 70px;
+  padding: 0 30px;
+  color: #3B5CF6;
+  margin-left: 8vh;
+}
+
+.header__logo {
+  color: #3B5CF6;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 24px;
+}
+
+.header-ttl {
+  font-size: 24px;
+  width: 80px;
+}
+
+.form-container {
+  display: flex;
+  align-items: center; /* 垂直方向の中央揃え */
+}
+
+.header__inner {
+  margin-top: 30px;
+}
+
+/* ヘッダーアイコン */
+.menu-icon {
+  display: flex;
+  align-items: center;
+}
+
+.icon-line {
+  display: flex;
+  flex-direction: column;
+  margin-right: 15px; /* アイコンとロゴの間隔調整 */
+}
+
+.line {
+  width: 20px;
+  height: 1px;
+  background-color: #fff;
+  margin: 3px;
+  margin-left: 7px;
+}
+
+.form-btn {
+  border-radius: 5px;
+  margin-right: 15px;
+  width: 40px;
+  height: 40px;
+  background-color: #3B5CF6;
+  box-shadow: 3px 3px 3px #ACACAC;
+  font-size: 25px;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+
+.header-nav {
+  width: 50%;
+}
+
+.header-nav-list {
+  display: flex;
+  font-weight: bold;
+}
+
+.header-nav-item:not(:last-child) {
+  margin-right: 30px;
+}
+
+.container {
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  padding: 10px;
+  box-shadow: 3px 3px 3px #ACACAC;
+  border-radius: 5px;
+  background-color: #fff;
+  margin-right: 7vh;
+}
+
+.search-container {
+  display: flex;
+  align-items: center;
+}
+
+.select-box,
+.search-box {
+  margin-right: 10px;
+}
+
+.separator {
+  height: 24px;
+  width: 1px;
+  background-color: #ccc;
+  margin-right: 10px;
+}
+
+.select-box select {
+  border: none;
+}
+
+/* 検索欄の枠線非表示 */
+.search-box input {
+  border: none;
+}
+
+.select-box select option {
+  margin-top: 10px;
+}
+
+.form-control {
+  margin-bottom: 0px;
+}
+
+
+
+/* 店舗一覧 */
+.shop__all {
+  margin-left: 10vh;
+  margin-right: 10vh;
+}
+
+.flex__item {
+  display: flex;
+  flex-wrap: wrap; /* 複数行に折り返す */
+  justify-content: space-around;
+}
+
+.shop__card {
+  width: calc(25% - 10px); /* グリッド内で均等に配置するための幅指定（間隔を考慮） */
+  box-sizing: border-box;
+  box-shadow: 3px 3px 3px #ACACAC;
+  margin: 5px;
+  border-radius: 10px;
+  background-color: #fff;
+}
+
+.card__img img {
+  width: 100%;
+  border-radius: 10px 10px 0px 0px;
+}
+
+.card__content {
+  padding: 15px 25px;
+}
+
+.card__ttl {
+  font-size: 15px;
+  margin-bottom: 5px;
+}
+
+.card__cat {
+  display: inline-block;
+  color: #000;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.tag {
+  font-size: 14px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.card__tag {
+  color: #fff;
+  padding: 5px 10px;
+  background: #3B5CF6;
+  border-radius: 5px;
+  border: none;
+}
+
+.fa{
+  font-size:15px;
+  margin-bottom: 10px;
+  color: #F8B400;
+}
+
+.fas {
+  margin-left: 15px;
+  font-size:15px;
+  color:#808080;
+}
+
+#rating {
+    display: flex;
+  }
+
+  #rating i {
+    margin-right: 5px;
+  }
+
+.btn.btn-no-border {
+  border: none;
+}
+
+.search-icon-btn {
+  border: none;
+  color: #888888;
+  background-color: #fff;
+}
+
+.btn.btn-primary {
+  border: none;
+  background-color: #fff;
+}
+

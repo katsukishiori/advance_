@@ -1,0 +1,115 @@
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 70px;
+  padding: 0 30px;
+  color: #000;
+}
+
+.header__inner {
+  padding: 20px 15px;
+}
+
+.menu-icon {
+  display: flex;
+  align-items: center;
+}
+
+.icon-line {
+  display: flex;
+  flex-direction: column;
+  margin-right: 15px;
+}
+
+.line {
+  width: 20px;
+  height: 1px;
+  background-color: #fff;
+  margin: 3px;
+  margin-left: 7px;
+  border-width:thin;
+}
+
+.form-btn {
+  border-radius: 5px;
+  margin-right: 15px;
+  width: 40px;
+  height: 40px;
+  background-color: #3B5CF6;
+  box-shadow: 3px 3px 3px #ACACAC;
+  font-size: 25px;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+.header__logo {
+  color: #3B5CF6;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 24px;
+}
+
+.header-nav {
+  border-radius: 5px;
+  margin-right: 15px;
+  color: #FFFFFF;
+  background-color: #3B5CF6;
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+.header-nav_btn {
+  font-size: 20px;
+}
+
+.update_shops {
+  text-align: center;
+}
+
+.update_shops-table {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50%;
+  margin: 0 auto;
+}
+
+th {
+  background-color: #289ADC;
+  color: white;
+  padding: 5px 40px;
+  border: 1px solid #dddddd;
+}
+
+tr:nth-child(odd) td {
+  background-color: #FFFFFF;
+}
+
+td {
+  padding: 25px 40px;
+  background-color: #EEEEEE;
+  text-align: center;
+}
+
+img.update__shop-image {
+  width: 30%;
+}
+
+button {
+  width: 60%;
+  padding: 10px 20px;
+  background-color: #289ADC;
+  border: none;
+  color: white;
+}

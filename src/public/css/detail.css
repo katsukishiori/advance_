@@ -1,0 +1,178 @@
+body {
+  background-color: #f5f5f5;
+}
+
+.flex {
+  display: flex;
+  justify-content: center;
+  margin-top: 50px;
+}
+
+.box {
+  margin-right: 10vh;
+  margin-left: 10vh;
+  margin-bottom: 100px;
+  font-size: 25px;
+  width: 50%;
+  height: 450px;
+}
+
+.shop-title {
+  display: flex;
+  align-items: center;
+}
+
+.return-btn {
+  border-radius: 5px;
+  margin-right: 10px;
+  width: 35px;
+  height: 35px;
+  background: #fff;
+  box-shadow: 3px 3px 3px #ACACAC;
+  font-size: 25px;
+  border: none;
+  cursor: pointer;
+}
+
+h2 {
+  font-size: 30px;
+}
+
+.box img {
+  width: 100%;
+}
+
+.box p {
+  font-size: 15px;
+}
+
+.card {
+  position: relative; /* 親要素に対して相対位置指定 */
+  width: 70vh;
+  height: 70vh;
+  padding: 20px;
+  border-radius: 5px;
+  background-color: #3B5CF6;
+  box-shadow: 3px 3px 3px #ACACAC;
+}
+
+.title{
+  font-size: 25px;
+  color: #fff;
+}
+
+/* input要素全体 */
+.form__input input {
+  border-radius: 5px;
+  height: 25px;
+  border: none;
+}
+
+/* 各input要素 */
+.form__input #time,
+.form__input #reservation_count {
+  width: 90%;
+}
+
+/* 下の枠線内の表示 */
+.form__display {
+  margin-top: 30px;
+  width: 85%;
+  height: 150px;
+  background-color: #587DF7;
+  border-radius: 5px;
+  padding-left: 10px;
+}
+
+.form__display table {
+  margin-top: 30px;
+  margin-left: 10px; /* 左寄せにするためのマージンを0に設定 */
+  font-size: 15px;
+  color: #fff;
+  line-height: 25px;
+}
+
+.form__display th {
+  text-align: left;
+  padding-top: 10px;
+  padding-left: 10px;
+  width: 50%;
+}
+
+.form__display td {
+  text-align: left;
+  padding-top: 10px;
+  padding-left: 10px;
+  width: 50%;
+}
+
+.card__bottom {
+  position: absolute; /* 絶対位置指定 */
+  bottom: 0; /* 下端に配置 */
+  left: 0; /* 左端に配置 */
+  display: block;
+  text-align: center;
+  background-color: #1637F5;
+  width: 100%;
+  padding: 10px;
+  border-radius: 0px 0px 5px 5px;
+}
+
+.card__bottom--button {
+  font-size: 14px;
+  color: #fff;
+  border: none;
+  background-color: #1637F5;
+}
+
+.evaluation-btn {
+  font-size: 20px;
+  text-align: center;
+}
+
+h3 {
+  font-size: 25px;
+  margin-top: 50px;
+  margin-left: 10vh;
+  text-decoration: underline dotted 4px orange;
+}
+
+.evaluation-item {
+  height: 150px;
+  border-bottom: 1px solid #ccc;
+}
+
+h4 {
+  margin-top: 50px;
+  margin-bottom: 0px;
+  margin-left: 15vh;
+  font-size: 20px;
+}
+
+.rating-container {
+  margin-left: 15vh;
+  margin-bottom: 30px;
+}
+
+#rating i {
+  cursor: pointer;
+  font-size: 24px;
+  color: #ccc;
+  margin-top: 5px;
+
+}
+
+#rating i.active {
+  color: #ffdd00;
+}
+
+.evaluation-comment {
+  font-size: 20px;
+  margin-left: 15vh;
+  margin-bottom: 100px;
+}
+
+.no-evaluation {
+  margin-left: 10vh;
+  font-size: 20px;
+}

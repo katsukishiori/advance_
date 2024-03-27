@@ -1,0 +1,131 @@
+body {
+  background-color: #EEEEEE;
+}
+
+.reservation__alert--success {
+  padding: 10px 30px;
+  border-color: #badbcc;
+  background-color: #f37782;
+  color: 	#B1063A;
+}
+
+.reservation__alert--danger {
+  padding: 10px 0;
+  border-color: #f5c2c7;
+  background-color: #f8d7da;
+  color: #842029;
+}
+
+.reservation__alert--danger ul {
+  margin: 0;
+}
+
+
+.login-form__content {
+  margin: 0 auto;
+  padding: 30px 15px;
+  max-width: 1230px;
+}
+
+.login-from__card {
+  margin: 0 auto;
+  width: 400px;
+  border: 1px solid #e9eaea;
+  border-radius: 5px;
+  margin-top: 80px;
+  box-shadow: 3px 3px 3px #ACACAC;
+  background-color: #fff;
+}
+
+.login-form__card--heading {
+  padding: 10px 25px;
+  height: 70px;
+  background: #3B5CF6;
+  color: #fff;
+  font-size: 14px;
+  border-radius: 5px 5px 0px 0px;
+}
+
+.login-form__card--ttl {
+  margin-top: 10px;
+  font-size: 20px;
+}
+
+.form {
+  margin: 0 auto;
+  width: 100%;
+  text-align: center;
+}
+
+.form__group {
+  margin-bottom: 5px;
+}
+
+.form__group-content {
+  height: 90px;
+}
+
+.form__group-title {
+  text-align: left;
+}
+
+.form__error {
+  height: 10px;
+  margin-left: 50px;
+  color: #ff0000;
+  text-align: left;
+}
+
+.form__input--text {
+  position: relative;
+  margin-bottom: 20px;
+}
+
+.form__input--text input {
+  border: none;
+  border-bottom: 1px solid #000000;
+  padding: 10px;
+  width: 80%;
+  box-sizing: border-box;
+  appearance: none;
+}
+
+.email {
+  margin-top: 30px;
+}
+
+.email::placeholder {
+  font-size: 18px;
+}
+
+.password::placeholder {
+  font-size: 18px;
+}
+
+.form__input--text input:focus {
+  outline: none;
+}
+
+.form__button {
+  text-align: right;
+}
+
+.form__button-submit {
+  margin-right: 30px;
+}
+
+
+.form__button {
+  margin-bottom: 20px;
+}
+
+.form__button-submit {
+  width: 25%;
+  height: 35px;
+  border: none;
+  border-radius: 5px;
+  background: #3B5CF6;
+  color: #fff;
+  cursor: pointer;
+}
+

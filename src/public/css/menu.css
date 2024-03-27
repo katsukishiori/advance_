@@ -1,0 +1,38 @@
+.return-btn {
+border-radius: 5px;
+width: 40px;
+height: 40px;
+color: #fff;
+font-weight: lighter;
+background: #3B5CF6;
+margin: 30px;
+box-shadow: 3px 3px 3px #ACACAC;
+font-size: 30px;
+border: none;
+cursor: pointer;
+}
+
+
+
+.header {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.logout__button {
+    border: none;
+    outline: none;
+    color: #3B5CF6;
+    background-color:#fff;
+    font-size: 30px;
+    font-weight: lighter;
+}
+
+.button {
+    display: inline-block;
+    padding: 10px 20px;
+    margin: 0 10px;
+    text-decoration: none;
+    color: #3B5CF6;
+    font-size: 30px;
+}
