@@ -9,8 +9,6 @@ use App\Models\Favorite;
 use App\Models\Shop;
 use App\Models\Prefecture;
 
-
-
 class MyPageController extends Controller
 {
     // 予約データ追加
@@ -19,7 +17,6 @@ class MyPageController extends Controller
         $reservations = Reservation::with('shops')->get();
         return view('mypage', ['reservations' => $reservations]);
     }
-
 
     //削除機能
     public function remove($id)
@@ -61,7 +58,6 @@ class MyPageController extends Controller
         $shops = Shop::all();
         return view('shop', ['shops' => $shops]);
     }
-
 
     //予約更新
     public function update(Request $request, $id)

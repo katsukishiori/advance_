@@ -67,7 +67,6 @@ body {
   align-items: center;
 }
 
-
 .header-nav {
   width: 50%;
 }
@@ -126,8 +125,6 @@ body {
   margin-bottom: 0px;
 }
 
-
-
 /* 店舗一覧 */
 .shop__all {
   margin-left: 10vh;
@@ -177,12 +174,12 @@ body {
   align-items: center;
 }
 
-.card__tag {
+.card__btn {
   color: #fff;
   padding: 5px 10px;
   background: #3B5CF6;
   border-radius: 5px;
-  border: none;
+  text-decoration: none;
 }
 
 .fa{

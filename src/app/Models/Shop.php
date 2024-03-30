@@ -8,11 +8,14 @@ use Illuminate\Http\Request;
 use App\Models\Prefecture;
 use App\Models\Genre;
 
-
-
 class Shop extends Model
 {
     protected $fillable = ['prefecture_id', 'genre_id', 'shop_name', 'shop_overview', 'shop_image'];
+
+    public function users()
+    {
+        return $this->belongsToMany(User::class, 'user_shops')->withPivot('role_id');
+    }
 
     // Prefectureモデルとのリレーション
     public function prefecture()
@@ -31,14 +34,14 @@ class Shop extends Model
         return $this->belongsToMany(Reservation::class, 'shop_reservation', 'shop_id', 'reservation_id');
     }
 
-    public function getPrefectures()
+    public function likes()
     {
-        return Prefecture::all();
+        return $this->hasMany('App\Models\Favorite');
     }
 
-    public function getGenres()
+    public function evaluations()
     {
-        return Genre::all();
+        return $this->hasMany(Evaluation::class, 'shop_id');
     }
 
     //検索機能
@@ -58,43 +61,18 @@ class Shop extends Model
 
     public function search(Request $request)
     {
-
         // フォームからキーワードを取得
         $keyword = $request->input('keyword');
-
         // Eloquentクエリで部分一致検索を行う（店名に対して）
         $results = Shop::keywordSearch($keyword)->get();
-
         // 検索結果をビューに渡す
         return view('shop', ['results' => $results]);
     }
-
 
     public function scopeKeywordSearch($query, $keyword)
     {
         return $query->where('shop_name', 'like', '%' . $keyword . '%');
     }
-
-
-
-
-    public function users()
-    {
-        return $this->belongsToMany(User::class, 'user_shops')->withPivot('role_id');
-    }
-
-
-    public function likes()
-    {
-        return $this->hasMany('App\Models\Favorite');
-    }
-
-    public function evaluations()
-    {
-        return $this->hasMany(Evaluation::class, 'shop_id');
-    }
-
-
 
     // お気に入りのハートの色を保持
     protected $appends = ['is_favorite'];
@@ -102,7 +80,6 @@ class Shop extends Model
     public function getIsFavoriteAttribute()
     {
         // お気に入りの状態を取得するロジックを実装
-        // 例えば、Favorites テーブルに対してのリレーションを使ったりする
         return $this->favorites()->where('user_id', auth()->id())->exists();
     }
 
@@ -110,5 +87,4 @@ class Shop extends Model
     {
         return $this->hasMany(Favorite::class);
     }
-
 }

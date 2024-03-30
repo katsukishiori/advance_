@@ -11,17 +11,6 @@ class Reservation extends Model
     use HasFactory;
     use SoftDeletes;
 
-    public function user()
-    {
-        // return $this->hasMany(Reservation::class);
-        return $this->belongsTo(User::class, 'user_id');
-    }
-
-    public function shop()
-    {
-        return $this->belongsTo(Shop::class, 'shop_id');
-    }
-
     protected $fillable = [
         'user_id',
         'shop_id',
@@ -29,7 +18,15 @@ class Reservation extends Model
         'reservation_count',
     ];
 
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
 
+    public function shop()
+    {
+        return $this->belongsTo(Shop::class, 'shop_id');
+    }
 
     public function shops()
     {

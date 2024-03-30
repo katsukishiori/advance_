@@ -36,9 +36,9 @@ return [
     'mailers' => [
         'smtp' => [
             'transport' => 'smtp',
-            'host' => env('MAIL_HOST', 'localhost'), // MailHog のホスト
-            'port' => env('MAIL_PORT', 1025), // MailHog のポート
-            'encryption' => env('MAIL_ENCRYPTION', null), // MailHog は通常、暗号化を必要としない
+            'host' => env('MAIL_HOST', 'localhost'),
+            'port' => env('MAIL_PORT', 1025),
+            'encryption' => env('MAIL_ENCRYPTION', null),
             'username' => env('MAIL_USERNAME'),
             'password' => env('MAIL_PASSWORD'),
             'timeout' => null,

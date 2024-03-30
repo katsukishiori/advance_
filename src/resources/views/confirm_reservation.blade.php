@@ -5,9 +5,7 @@
 @endsection
 
 @section('content')
-
 <body>
-
     <div class="reservation-list">
         <h2>予約状況</h2>
 
@@ -39,8 +37,5 @@
         </table>
     </div>
 
-
-
 </body>
-
 @endsection

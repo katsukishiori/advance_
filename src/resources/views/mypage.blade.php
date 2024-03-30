@@ -9,8 +9,6 @@
 
 @section('content')
 
-
-
 <div class="header">
     @if (Auth::check())
     <h1>{{ Auth::user()->name }}さん</h1>
@@ -27,7 +25,7 @@
         <div class="reservation__card">
             <div class="card-title">
                 <div class="left">
-                    <i class="fas fa-clock"></i> <!-- 時計マーク -->
+                    <i class="fas fa-clock"></i>
                     予約{{ $reservation->id }}
                 </div>
 
@@ -69,6 +67,7 @@
                         </td>
                     </tr>
                 </table>
+
                 <div class="card__bottom">
                     <button class="card__bottom--button" type="submit">変更する</button>
                 </div>
@@ -87,7 +86,7 @@
             @foreach ($shops as $shop)
             <div class="shop__card">
                 <div class="card__img">
-                    <img src="{{ asset('img/' . $shop->shop_image) }}" alt="" />
+                    <img src="{{ asset('storage/images/' . $shop->shop_image) }}" alt="店舗画像">
                 </div>
                 <div class="card__content">
                     <div class="card__cat">{{ $shop->shop_name }}</div>
@@ -96,13 +95,12 @@
                         #{{ $shop->genre->genre_name }}
                     </p>
                     <div class="tag">
-                        <a class="card__tag" href="{{ route('detail', ['slug' => $shop->slug]) }}">詳しく見る</a>
+                        <a class="card__tag" href="{{ route('detail', ['shop_id' => $shop->id]) }}">詳しく見る</a>
 
                         <!-- お気に入りボタン -->
                         <a href="" class="btn btn-primary" onclick="toggleFavorite(event, '{{ $shop->id }}')">
                             <i id="heartIcon{{ $shop->id }}" class="fas fa-heart" style="color: {{ auth()->user()->favoriteShops->contains($shop) ? 'red' : '#EEEEEE' }}; font-size: 30px;"></i>
                         </a>
-
 
                         <!-- ハートの色を変える -->
                         <script>

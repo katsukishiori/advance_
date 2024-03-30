@@ -6,11 +6,13 @@
 @endsection
 
 @section('content')
+
 @if(Session::has('success_message'))
 <div class="alert alert-success">
     {{ Session::get('success_message') }}
 </div>
 @endif
+
 <div class="register__content">
     <div class="register-from__card">
         <div class="register-form__card--heading">
@@ -19,9 +21,6 @@
         <form class="form" action="/create_shopleaders/" method="post">
             @csrf
             <div class="form__group">
-                <div class="form__group-title">
-
-                </div>
                 <div class="form__group-content">
                     <div class="form__input--text">
                         <i class="fa-solid fa-user" style="font-size: 25px; padding-top: 10px;"></i>
@@ -32,13 +31,10 @@
                             @enderror
                         </div>
                     </div>
-
                 </div>
             </div>
-            <div class="form__group">
-                <div class="form__group-title">
 
-                </div>
+            <div class="form__group">
                 <div class="form__group-content">
                     <div class="form__input--text">
                         <i class="fa-solid fa-envelope" style="font-size: 25px; padding-top: 10px;"></i>
@@ -49,13 +45,10 @@
                             @enderror
                         </div>
                     </div>
-
                 </div>
             </div>
-            <div class="form__group">
-                <div class="form__group-title">
 
-                </div>
+            <div class="form__group">
                 <div class="form__group-content">
                     <div class="form__input--text">
                         <i class="fa-solid fa-lock" style="font-size: 25px; padding-top: 10px;"></i>
@@ -66,17 +59,13 @@
                             @enderror
                         </div>
                     </div>
-
                 </div>
             </div>
 
             <div class="form__group">
-                <div class="form__group-title">
-
-                </div>
                 <div class="form__group-content">
                     <div class="form__input--text">
-                        <i class="fa-solid fa-lock" style="font-size: 25px; padding-top: 10px;"></i>
+                        <i class="fa-solid fa-key" style="font-size: 25px; padding-top: 10px;"></i>
                         <input type="password" name="password_confirmation" placeholder="Confirm Password" class="password" />
                         <div class="form__error">
                             @error('password_confirmation')
@@ -84,17 +73,13 @@
                             @enderror
                         </div>
                     </div>
-
                 </div>
             </div>
 
             <div class="form__group">
-                <div class="form__group-title">
-
-                </div>
                 <div class="form__group-content" style="margin-top: 20px;">
                     <div class="form__input--text">
-                        <i class="fa-solid fa-lock" style="font-size: 25px; padding-top: 10px;"></i>
+                        <i class=" fa-solid fa-shop" style="font-size: 25px; padding-top: 10px;"></i>
                         <select name="shop_name" class="select-shop">
                             @foreach ($shops as $shop)
                             <option value="{{ $shop->id }}">{{ $shop->shop_name }}</option>

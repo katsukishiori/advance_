@@ -10,19 +10,8 @@ use App\Models\Shop;
 
 class UpdateShopsController extends Controller
 {
-    public function index(Request $request)
-    {
-        // すべての店舗情報を取得
-        $shops = Shop::all();
-        $prefectures = Prefecture::all();
-        $genres = Genre::all();
-
-        // ビューに変数を渡す
-        return view('update_shops', compact('shops', 'prefectures', 'genres'));
-    }
-
     //店舗更新画面へ移動する時に必要なコード
-    public function show($shopId)
+    public function index($shopId)
     {
         // ユーザーが所属する店舗のデータを取得
         $shop = Shop::find($shopId);
@@ -43,12 +32,6 @@ class UpdateShopsController extends Controller
         // ビューにデータを渡す
         return view('update_shops', compact('shop', 'prefectures', 'genres'));
     }
-
-
-
-
-
-
 
     public function update(Request $request, $id)
     {

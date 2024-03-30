@@ -40,11 +40,6 @@ class CreateShopsController extends Controller
             )->max('id');
             $newId = ($maxId < 999) ? $maxId + 1 : 21;
 
-            // もし新しい shop_id が1000以上であれば、21に設定する
-            if ($newId >= 999) {
-                $newShopId = 21;
-            }
-
             // 新しい店舗を作成して保存
             $shop = new Shop();
             $shop->id = $newId;

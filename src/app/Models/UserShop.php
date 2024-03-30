@@ -17,6 +17,6 @@ class UserShop extends Pivot
 
     public function user()
     {
-        return $this->belongsTo(User::class); // belongsTo() を使用して User モデルに対する関係を定義
+        return $this->belongsTo(User::class);
     }
 }

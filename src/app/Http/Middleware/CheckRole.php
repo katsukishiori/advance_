@@ -2,11 +2,7 @@
 
 namespace App\Http\Middleware;
 
-
-
 use Closure;
-use Illuminate\Http\Request;
-
 class CheckRole
 {
     /**
@@ -27,7 +23,6 @@ class CheckRole
             return $next($request);
         }
 
-        // 権限がない場合に 403 エラーを返す
         return redirect('/');
     }
 }

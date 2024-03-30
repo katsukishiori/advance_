@@ -6,8 +6,6 @@
     <link rel="stylesheet" href="{{ asset('css/shop.css') }}">
     <link rel="stylesheet" href="{{ asset('css/sanitize.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha384-w22ofWoEaD0QG6Lg5uKsRYbOhAaEN3KIo6p6BkRH9KXjU2VE+D1eg/ggX1Waf3+u" crossorigin="anonymous">
-
 </head>
 
 <header class="header">
@@ -26,13 +24,9 @@
 
         </div>
     </div>
-    
-
 
     <nav class="header-nav">
-
         <div class="container mt-3">
-
             <!-- 都道府県のセレクトボックス -->
             <div class="select-box">
                 <form class="form-control" action="/search" method="get">
@@ -58,9 +52,6 @@
                             });
                         });
                     </script>
-
-
-
 
                     <!-- ジャンルのセレクトボックス -->
                     <select class="form-control" name="genre_id" id="genreSelect">
@@ -97,22 +88,16 @@
 
                 <input type="text" class="form-control" name="keyword" placeholder="Search ...">
             </div>
-
         </div>
-
     </nav>
-
 </header>
-
 
 <!------ 店舗カード -------->
 <div class="shop__all">
     <div class="flex__item">
-
         @foreach ($shops as $shop)
         <div class="shop__card">
             <div class="card__img">
-                <!-- <img src="{{ asset('img/' . $shop->shop_image) }}" alt="" /> -->
                 <img src="{{ asset('storage/images/' . $shop->shop_image) }}" alt="店舗画像">
             </div>
             <div class="card__content">
@@ -121,23 +106,6 @@
                     #{{ $shop->prefecture->prefecture_name }}
                     #{{ $shop->genre->genre_name }}
                 </p>
-
-                <!-- ５段階評価星マーク -->
-                <div id="rating">
-                    <i class="fa fa-star active"></i>
-                    <i class="fa fa-star active"></i>
-                    <i class="fa fa-star active"></i>
-                    <i class="fa fa-star active"></i>
-                    <i class="fa fa-star active"></i>
-                    <i class="fas fa-comment-dots" style="cursor: pointer;" onclick="redirectToEvaluation()"></i>
-                </div>
-
-                <script>
-                    function redirectToEvaluation() {
-                        // JavaScriptで評価ページにリダイレクト
-                        window.location.href = "/detail/" + slug;
-                    }
-                </script>
 
                 <script>
                     $('.fa').on('mouseover', function() {
@@ -158,15 +126,13 @@
                     });
                 </script>
 
-
                 <div class="tag">
-                    <a class="card__tag" href="{{ route('index', ['shop_id' => $shop->id]) }}">詳しく見る</a>
+                    <a class="card__btn" href="{{ route('index', ['shop_id' => $shop->id]) }}">詳しく見る</a>
 
                     <!-- お気に入りボタン -->
                     <a href="{{ route('mypage', $shop->id) }}" class="btn btn-primary" onclick="toggleFavorite(event, '{{ $shop->id }}')">
                         <i id="heartIcon{{ $shop->id }}" class="fas fa-heart" style="color: {{ $shop->is_favorite ? 'red' : '#EEEEEE' }}; font-size: 30px;"></i>
                     </a>
-
 
                     <!-- ハートの色を変える -->
                     <script>
@@ -208,8 +174,6 @@
                             }
                         }
                     </script>
-
-
 
                 </div>
             </div>

@@ -8,17 +8,13 @@ use App\Models\Shop;
 
 class EvaluationController extends Controller
 {
-
-
     public function index(Request $request)
     {
-
         // リクエストからshop_idを取得
         $shopId = $request->input('shop_id');
 
         // $shopIdを使用してお店の情報を取得
         $shopData = Shop::find($shopId);
-
 
         // 評価画面にお店の情報を渡して表示
         return view('evaluation', ['shopData' => $shopData]);
@@ -53,11 +49,9 @@ class EvaluationController extends Controller
 
             $evaluation->save();
 
-            // 評価を投稿した店舗のスラッグを取得
-            $shopSlug = $evaluation->shop->slug;
 
             // 成功したらリダイレクトまたは適切な応答を返す
-            return redirect("/detail/{$shopSlug}");
+            return redirect()->route('detail', ['shop_id' => $evaluation->shop_id]);
         } else {
             return redirect('/login')->with('error', 'ログインしてください');
         }

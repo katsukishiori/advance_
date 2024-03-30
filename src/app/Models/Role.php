@@ -14,4 +14,8 @@ class Role extends Model
         return $this->belongsToMany(User::class, 'user_roles')->withPivot('shop_id');
     }
 
+    public function userShops()
+    {
+        return $this->hasMany(UserShop::class);
+    }
 }

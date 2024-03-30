@@ -10,57 +10,10 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 use App\Models\UserShop;
 
-use Illuminate\Support\Facades\Mail;
-use App\Mail\AnnouncementMail;
-
-use Illuminate\Auth\Notifications\VerifyEmail;
-
 
 
 class AuthController extends Controller
 {
-    public function login(LoginRequest $request)
-    {
-        $credentials = $request->only('email', 'password');
-
-        if (Auth::attempt($credentials)) {
-            // ログイン成功時の処理
-
-
-            // ログインしたユーザーのIDを取得
-            $userId = Auth::id();
-
-            // ユーザーショップを取得
-            $userShop = UserShop::where('user_id', $userId)->first();
-
-            // ユーザーショップからrole_idを取得
-            $role_id = $userShop->role_id;
-
-
-            // role_idに基づいてリダイレクト先を設定
-            switch ($role_id) {
-                case 1:
-                    // 管理者の場合の処理
-                    return redirect()->route('admin.dashboard');
-                    break;
-                case 2:
-                    // ショップリーダーの場合の処理
-                    return redirect()->route('confirm_reservation');
-                    break;
-                    // その他の役割に対する処理を追加する場合はここに追記
-                default:
-                    // デフォルトのリダイレクト先を設定
-                    return redirect('/');
-                    break;
-            }
-        } else {
-            // ログイン失敗時の処理
-            return redirect('/login')->with('error', 'メールアドレスまたはパスワードが間違っています。');
-        }
-    }
-
-
-
     public function store(AuthorRequest $request)
     {
         // デフォルトのショップIDと役割IDを定義
@@ -81,25 +34,30 @@ class AuthController extends Controller
             'password' => Hash::make($request->input('password')),
         ]);
 
-        event(new Registered($user)); //メール
-
         // ユーザーショップ情報を作成
         $user->shops()->attach($defaultShopId, ['role_id' => $defaultRoleId]);
-
-        // 本人確認メールを送信
-        $user->sendEmailVerificationNotification();
-
-        Mail::raw('test mail', function ($message) {
-            $message->to('test@example.com')
-                ->subject('test');
-        });
 
         // 新しいユーザーが作成されたら thanks ページにリダイレクト
         return redirect('thanks');
     }
 
-    public function showRegistrationForm()
+    public function login(LoginRequest $request)
     {
-        return view('auth.register');
+        $credentials = $request->only('email', 'password');
+
+        if (Auth::attempt($credentials)) {
+            // ログインしたユーザーのIDを取得
+            $userId = Auth::id();
+
+            // ユーザーショップを取得
+            $userShop = UserShop::where('user_id', $userId)->first();
+
+            // ユーザーショップからrole_idを取得
+            $role_id = $userShop->role_id;
+
+        } else {
+            // ログイン失敗時の処理
+            return redirect('/login')->with('error', 'メールアドレスまたはパスワードが間違っています。');
+        }
     }
 }

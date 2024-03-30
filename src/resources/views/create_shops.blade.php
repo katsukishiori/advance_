@@ -6,13 +6,7 @@
     <link rel="stylesheet" href="{{ asset('css/create_shops.css') }}">
     <link rel="stylesheet" href="{{ asset('css/sanitize.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-
 </head>
-
-
-
-
-
 
 <header class="header">
     <div class="header__inner">
@@ -27,13 +21,14 @@
                     </button>
                     <a class="header__logo" href="/">Rese</a>
             </form>
-
         </div>
     </div>
-
     <nav class="header-nav">
+        @if(Auth::user()->role_id == 2)
+        <a class="header-nav__btn" href="/update_shops_2/{{ Auth::user()->userShop->shop_id }}">店舗更新画面へ</a>
+        @else
         <a class="header-nav__btn" href="/update_shops/{{ Auth::user()->userShop->shop_id }}">店舗更新画面へ</a>
-
+        @endif
     </nav>
 </header>
 
@@ -41,11 +36,9 @@
     <div class="create_shop-ttl">
         <h1>店舗作成</h1>
     </div>
-
     @if(session()->has('message'))
     <div>{{ session('message') }}</div>
     @endif
-
     <form action="/create_shops" method="post" enctype="multipart/form-data">
         @csrf
         <table class="create_shops-table">
@@ -86,5 +79,4 @@
             </tr>
         </table>
     </form>
-
 </div>

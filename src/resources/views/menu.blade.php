@@ -64,12 +64,6 @@
             <a href="/mypage" class="button">Mypage</a><br />
         </form>
 
-        @can('admin')
-        <a href="/user/admin" class="auth-btn auth-btn--text">
-            管理者ページへ
-        </a>
-        @endcan
-
         @if(Auth::user()->role_id == 1 || Auth::user()->role_id == 2)
         <form class="form" action="/create_shopleaders" method="post">
             @csrf

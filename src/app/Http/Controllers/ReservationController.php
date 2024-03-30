@@ -12,19 +12,16 @@ use App\Http\Requests\ReservationRequest;
 
 class ReservationController extends Controller
 {
-    public function index($slug)
-    {
-        $shopData = Shop::where('slug', $slug)->first();
+    public function index($shopId)
+{
+    // slug を使用して該当する店舗データを取得
+    $shopData = Shop::find($shopId);
 
-        $evaluations = Evaluation::all();
+    // 関連する shop_id で絞り込んだ口コミデータを取得
+    $evaluations = Evaluation::where('shop_id', $shopId)->get();
 
-
-        // 関連する shop_id で絞り込んだ口コミデータを取得
-        $evaluations = Evaluation::where('shop_id', $shopData->id)->get();
-
-        return view('detail', compact('shopData', 'evaluations'));;
-    }
-
+    return view('detail', compact('shopData', 'evaluations'));
+}
 
     public function done()
     {
@@ -58,8 +55,6 @@ class ReservationController extends Controller
 
         return redirect('/done');
     }
-
-
 
     public function reservationShop(Request $request, $slug = null)
     {

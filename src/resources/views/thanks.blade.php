@@ -2,6 +2,7 @@
 
 @section('css')
 <link rel="stylesheet" href="{{ asset('css/thanks.css') }}">
+<link rel="stylesheet" href="{{ asset('css/sanitize.css') }}">
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 @endsection
@@ -24,4 +25,4 @@
         </form>
     </div>
 
-@endsection
+    @endsection

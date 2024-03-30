@@ -15,20 +15,17 @@ class RolesTableSeeder extends Seeder
     public function run()
     {
         $param = [
-            'name' => '管理者',
-            'role' => 'admin',
+            'role_name' => 'admin',
         ];
         DB::table('roles')->insert($param);
 
         $param = [
-            'name' => '店舗代表者',
-            'role' => 'shopleader',
+            'role_name' => 'shopleader',
         ];
         DB::table('roles')->insert($param);
 
         $param = [
-            'name' => '利用者',
-            'role' => 'user',
+            'role_name' => 'user',
         ];
         DB::table('roles')->insert($param);
     }

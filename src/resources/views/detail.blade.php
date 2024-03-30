@@ -2,6 +2,7 @@
 
 @section('css')
 <link rel="stylesheet" href="{{ asset('css/detail.css') }}">
+<link rel="stylesheet" href="{{ asset('css/sanitize.css') }}">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 @endsection
 
@@ -22,7 +23,6 @@
             <p>{{ $shopData->shop_overview }}</p>
         </form>
     </div>
-
 
     <!------------- 予約カード -------------->
     <div class="box">
@@ -52,10 +52,6 @@
                     <button class="card__bottom--button" type="submit">予約する</button>
                 </div>
 
-
-
-
-
                 <div class="form__display">
                     <table id="displayTable">
                         <tr>
@@ -77,10 +73,6 @@
                     </table>
                 </div>
 
-
-
-
-
         </div>
         <!-- .card 終了 -->
     </div>
@@ -95,7 +87,6 @@
     <a class="evaluation" href="{{ url('/login') }}">評価する</a>
     @endif
 </div>
-
 
 <div class="evaluation-list">
     <h3>みんなの口コミ</h3>
