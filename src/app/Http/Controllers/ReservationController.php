@@ -13,15 +13,11 @@ use App\Http\Requests\ReservationRequest;
 class ReservationController extends Controller
 {
     public function index($shopId)
-{
-    // slug を使用して該当する店舗データを取得
-    $shopData = Shop::find($shopId);
-
-    // 関連する shop_id で絞り込んだ口コミデータを取得
-    $evaluations = Evaluation::where('shop_id', $shopId)->get();
-
-    return view('detail', compact('shopData', 'evaluations'));
-}
+    {
+        $shopData = Shop::find($shopId);
+        $evaluations = Evaluation::where('shop_id', $shopId)->get();
+        return view('detail', compact('shopData', 'evaluations'));
+    }
 
     public function done()
     {

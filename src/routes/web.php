@@ -52,10 +52,10 @@ Route::post('/create_shopleaders', [AdminController::class, 'create']);
 // 飲食店一覧画面表示
 Route::get('/', [ShopController::class, 'index']);
 // 飲食店詳細表示
-Route::get('/detail/{slug}', [ShopController::class, 'show'])->name('detail');
+Route::get('/detail/{shop_id}', [ShopController::class, 'show'])->name('show');
 // 検索
 Route::get('/search', [ShopController::class, 'search']);
-Route::get('/detail/{shop_id}', [ReservationController::class, 'index'])->name('index');
+Route::get('/detail/{shop_id}', [ReservationController::class, 'index'])->name('shop.detail');
 // 予約するときだけ認証が必要なルート
 Route::post('/reservation', [ReservationController::class, 'reservationShop'])->middleware('auth');
 // 予約処理
@@ -80,8 +80,6 @@ Route::delete('/mypage/delete/{id}', [MyPageController::class, 'remove'])->name(
 // 予約更新
 Route::patch('/mypage/{id}/update', [MyPageController::class, 'update'])->name('mypage.update');
 //口コミ画面表示
-Route::get('/evaluation', [EvaluationController::class, 'index']);
+Route::get('/evaluation', [EvaluationController::class, 'index'])->name('evaluation');
 //口コミ情報処理
 Route::post('/evaluation', [EvaluationController::class, 'store'])->name('evaluation.store');
-
-

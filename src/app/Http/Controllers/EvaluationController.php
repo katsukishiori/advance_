@@ -41,14 +41,7 @@ class EvaluationController extends Controller
             $evaluation->rating = $request->input('rating');
             $evaluation->comment = $request->input('textarea');
 
-            // ファイルアップロードがあれば、適切な処理を追加
-            if ($request->hasFile('photo')) {
-                $path = $request->file('photo')->store('photos');
-                $evaluation->photo_path = $path;
-            }
-
             $evaluation->save();
-
 
             // 成功したらリダイレクトまたは適切な応答を返す
             return redirect()->route('detail', ['shop_id' => $evaluation->shop_id]);

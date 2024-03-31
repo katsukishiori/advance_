@@ -6,7 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Evaluation</title>
     <link rel="stylesheet" href="{{ asset('css/evaluation.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/sanitize.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 </head>
 
@@ -85,7 +84,7 @@
             <h2>コメント</h2>
             <textarea name="textarea" cols="50" rows="7"></textarea>
             <!-- shop_id を送るための隠しフィールド -->
-            <input type="hidden" name="shop_id" value="{{ request('shop_id') }}">
+            <input type="hidden" name="shop_id" value="{{ $shopData->id }}">
             <div class="form__button">
                 <button class="form__button-submit" type="submit">口コミを投稿する</button>
             </div>

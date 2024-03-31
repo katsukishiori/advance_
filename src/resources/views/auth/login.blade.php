@@ -13,8 +13,6 @@
 
 @endif
 
-
-
 <div class="login__content">
     <div class="login-from__card">
         <div class="login-form__card--heading">

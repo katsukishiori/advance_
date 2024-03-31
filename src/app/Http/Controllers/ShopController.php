@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Shop;
 use App\Models\Prefecture;
 use App\Models\Genre;
+use App\Models\Evaluation;
 
 class ShopController extends Controller
 {
@@ -21,14 +22,16 @@ class ShopController extends Controller
         return view('shop', compact('shops', 'prefectures', 'genres'));
     }
 
-    //それぞれの店舗情報を表示する
     public function show($shop_id)
     {
         $shopData = Shop::findOrFail($shop_id);
-        return view(
-            'detail',
-            compact('shopData')
-        );
+        $evaluations = Evaluation::where('shop_id', $shop_id)->get();
+
+        return view('detail', [
+            'shopData' => $shopData,
+            'evaluations' => $evaluations,
+            'shop_id' => $shop_id, // $shop_id をビューに渡す
+        ]);
     }
 
     //検索機能

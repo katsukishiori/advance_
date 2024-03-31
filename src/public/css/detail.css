@@ -6,15 +6,16 @@ body {
   display: flex;
   justify-content: center;
   margin-top: 50px;
+  height: 500px;
 }
 
 .box {
-  margin-right: 10vh;
-  margin-left: 10vh;
+  margin-right: 5vh;
+  margin-left: 5vh;
   margin-bottom: 100px;
   font-size: 25px;
   width: 50%;
-  height: 450px;
+  height: 600px;
 }
 
 .shop-title {
@@ -46,10 +47,10 @@ h2 {
   font-size: 15px;
 }
 
-.card {
+.box__card {
   position: relative; /* 親要素に対して相対位置指定 */
   width: 70vh;
-  height: 70vh;
+  height: 100%;
   padding: 20px;
   border-radius: 5px;
   background-color: #3B5CF6;
@@ -106,7 +107,7 @@ h2 {
   width: 50%;
 }
 
-.card__bottom {
+.form__bottom {
   position: absolute; /* 絶対位置指定 */
   bottom: 0; /* 下端に配置 */
   left: 0; /* 左端に配置 */
@@ -125,9 +126,10 @@ h2 {
   background-color: #1637F5;
 }
 
-.evaluation-btn {
+.evaluation {
   font-size: 20px;
   text-align: center;
+  margin-top: 200px;
 }
 
 h3 {
@@ -135,6 +137,11 @@ h3 {
   margin-top: 50px;
   margin-left: 10vh;
   text-decoration: underline dotted 4px orange;
+}
+
+.evaluation-btn{
+  margin-top: 50px;
+  text-align: center;
 }
 
 .evaluation-item {

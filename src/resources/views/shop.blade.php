@@ -127,7 +127,7 @@
                 </script>
 
                 <div class="tag">
-                    <a class="card__btn" href="{{ route('index', ['shop_id' => $shop->id]) }}">詳しく見る</a>
+                    <a class="card__btn" href="{{ route('detail', ['shop_id' => $shop->id]) }}">詳しく見る</a>
 
                     <!-- お気に入りボタン -->
                     <a href="{{ route('mypage', $shop->id) }}" class="btn btn-primary" onclick="toggleFavorite(event, '{{ $shop->id }}')">
